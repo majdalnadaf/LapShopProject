@@ -1,0 +1,102 @@
+﻿@model TbOs
+
+
+
+@section PluginCssForThisPage
+{
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Operating System  </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Operating System Edit</h4>
+
+                            <form class="forms-sample" enctype="multipart/form-data" method="post" role="form" 
+                            asp-area="Admin" asp-controller="Os" asp-action="Save">
+
+
+
+                            <!-- hidden input -->
+                            <input type="hidden" asp-for="OsId" value="@Model.OsId" />
+                            <input type="hidden" asp-for="CreatedBy" value="@Model.CreatedBy" />
+                            <input type="hidden" asp-for="CreatedDate" value="@Model.CreatedDate" />
+                            <input type="hidden" asp-for="UpdatedBy" value="@Model.UpdatedDate" />
+                            <input type="hidden" asp-for="UpdatedDate" value="@Model.UpdatedDate" />
+                            <input type="hidden" asp-for="CurrentState" value="@Model.CurrentState" />
+                            <input type="hidden" asp-for="ImageName" value="@Model.ImageName" />
+
+                            <!-- hidden input -->
+
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Os Name</label>
+                                    <input asp-for="OsName" type="text" class="form-control" id="exampleInputName1" placeholder="OsName">
+                                    <span asp-validation-for="OsName" class="text-danger"></span>
+                                </div>
+
+
+
+                                <div class="form-group form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="ShowInHomePage" type="checkbox" class="form-check-input" id="ShowInHomePage">
+                                        Show in Home Page
+                                    </label>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label></label>
+                                    <input name="Files" type="file" class="form-control" id="exampleInputEmail3" placeholder="Os Image">
+                                </div>
+
+
+                               <button type="submit" class="btn btn-gradient-primary me-2">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section PluginJsForThisPage
+{
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+}
+
+@section CustomJsForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/file-upload.js"></script>
+    <script src="~/Admin/assets/js/typeahead.js"></script>
+    <script src="~/Admin/assets/js/select2.js"></script>
+    <!-- End custom js for this page -->
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+}

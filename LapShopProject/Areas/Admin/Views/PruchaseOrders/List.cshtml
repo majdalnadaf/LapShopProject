@@ -1,0 +1,91 @@
+﻿@model List<TbPurchaseInvoice>
+
+
+
+@* Plugin Css For This Page*@
+@section PluginCssForThisPage
+{
+
+}
+
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Purchase Invoices List </h3>
+            </div>
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"> Purchase Invoices</h4>
+                            <a href="/Admin/PruchaseOrders/Edit" class="card-subtitle btn btn-primary">@ResGeneral.lblNew</a>
+                            <div class="row">
+                                <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                    <table id="sortable-table-2" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortStyle">InvoiceDate <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">Supplier Name <i class="mdi mdi-chevron-down"></i></th>
+                                                <th>@ResGeneral.lblAction</th>
+                                                <th>@ResGeneral.lblAction</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @for (int i = 0; i < Model.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td> @Model[i].InvoiceDate </td>
+                                                    @if (@Model[i].Supplier != null)
+                                                    {
+                                                        <td> @Model[i].Supplier.SupplierName </td>
+                                                    }
+
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="PruchaseOrders" asp-action="Edit" asp-route-invoiceId="@Model[i].InvoiceId"
+                                                           class="btn btn-outline-info">Edit</a>
+
+                                                    </td>
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="PruchaseOrders" asp-action="Delete" asp-route-invoiceId="@Model[i].InvoiceId"
+                                                           class="btn btn-outline-danger">Delete</a>
+
+                                                    </td>
+
+
+                                                </tr>
+
+
+
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+            <script src="~/Admin/assets/js/jq.tablesort.js"></script>
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <script src="~/Admin/assets/js/tablesorter.js"></script>
+
+        }

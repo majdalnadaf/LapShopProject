@@ -1,0 +1,90 @@
+﻿@model List<TbCategory>
+
+@{
+}
+@*Plugins Css For This Page *@
+@section PluginCssForThisPage
+{
+    <link rel="stylesheet" href="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+}
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> @ResAdmin.lblCategoryList </h3> @*Category list*@
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"> @ResAdmin.lblCategories </h4> @*Categories*@
+
+                    <a asp-area="Admin"  asp-controller="Category"  asp-action="Edit"
+                        class="btn btn-outline-primary card-subtitle" > @ResGeneral.lblNew </a>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <table id="order-listing" class="table">
+                                <thead>
+                                    <tr>
+                                        <th> @ResAdmin.lblCategoryImage</th>
+                                        <th>@ResAdmin.lblCategoryName</th>
+                                        <th>@ResAdmin.lblCreatedBy</th>
+                                        <th>@ResAdmin.lblCreatedDate</th>
+                                        <th>@ResAdmin.lblUpdatedBy</th>
+                                        <th>@ResAdmin.lblUpdatedDate</th>
+                                        <th>@ResAdmin.lblState</th>
+                                        <th>@ResGeneral.lblAction</th>
+                                        <th>@ResGeneral.lblAction</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @for (int i = 0; i < Model.Count ; i++)
+                                    {
+                                        <tr>
+                                            <td> <img src="~/Admin/Uploads/Images/Categories/@Model[i].ImageName" alt="Image" /> </td>
+                                            <td>@Model[i].CategoryName</td>
+                                            <td>@Model[i].CreatedBy</td>
+                                            <td>@Model[i].CreatedDate</td>
+                                            <td>@Model[i].UpdatedBy</td>
+                                            <td>@Model[i].UpdatedDate</td>
+                                            <td>@Model[i].CurrentState</td>
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-categoryId = "@Model[i].CategoryId"
+                                                class="btn btn-outline-info">@ResGeneral.lblEdit</a>
+                                            </td>
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-categoryId="@Model[i].CategoryId"
+                                                    class="btn btn-outline-danger">@ResGeneral.lblDelete</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+
+            <script src="~/Admin/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <script src="~/Admin/assets/js/data-table.js"></script>
+        }

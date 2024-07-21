@@ -1,0 +1,62 @@
+﻿@model TbItem
+
+
+
+<div class="img-wrapper">
+    <div class="front">
+        <a asp-controller="ItemDetails" asp-action="Details" asp-route-Itemid="@Model.ItemId">
+            <img src="~/Admin/Uploads/Images/Items/@Model.ImageName"
+                 class="img-fluid blur-up lazyload bg-img" alt="">
+        </a>
+    </div>
+    <div class="cart-info cart-wrap">
+        @* dont forget go to tht wishlist*@
+        <a asp-controller="UserWishList" asp-action="AddToWishList" asp-route-itemId="@Model.ItemId" title="@ResWebsite.lblAddToWishList" tabindex="0">
+            <i class="ti-heart"
+               aria-hidden="true"></i>
+        </a>
+        <a href="/ItemDetails/Details?@Model.ItemId" data-toggle="modal" data-target="#quick-view" title="@ResWebsite.lblQuickView" tabindex="0">
+            <i class="ti-search" aria-hidden="true"></i>
+        </a>
+
+    </div>
+
+
+    <a asp-controller="Order" asp-action="AddToCart" asp-route-itemId="@Model.ItemId"
+       class="add-button">
+        @ResWebsite.lblAddToCart
+    </a>
+
+
+</div>
+<div class="product-detail">
+    <div class="rating">
+        @if (Model.Rating <= 0)
+        {
+            <h6 class="text-primary">
+                @ResWebsite.TitNewItem
+            </h6>
+        }
+        else
+        {
+
+            var idx = 0;
+
+            @for (; idx < Model.Rating; idx++)
+            {
+                <i class="fa fa-star" style=" color: gold;"></i>
+            }
+
+            @for (; idx < 5; idx++)
+            {
+                <i class="fa fa-star" style=" color: #ccc;"></i>
+            }
+        }
+    </div>
+        <h6>@Model.ItemName</h6>
+    <h4>@Model.SalesPrice</h4>
+</div>
+
+
+
+

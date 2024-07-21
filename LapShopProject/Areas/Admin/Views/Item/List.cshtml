@@ -1,0 +1,162 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<VwItem>
+
+@{
+}
+
+
+@* Plugin Css For This Page*@
+@section PluginCssForThisPage
+{
+
+}
+
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> @ResAdmin.lblItemsList </h3>
+
+            </div>
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"> @ResAdmin.lblItems</h4>
+                            <a  href="/Admin/Item/Edit" class="card-subtitle btn btn-primary">@ResGeneral.lblNew</a>
+                            <div class="row">
+
+                                <div class="col-12 grid-margin">
+
+                                    <select asp-items="@(new SelectList(ViewBag.lstCategories,"CategoryName","CategoryName"))" class="form-select"
+                                            style="  background-color: #222; color: #fff;  border: 1px solid #444; " onchange="Filter(this)">  </select>
+
+                                </div>
+
+
+                                <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                    <table id="sortable-table-2" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortStyle">@ResAdmin.lblImage <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblItemName <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblCategoryName <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblItemTypeName <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblSalesPrice <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblPurchasePrice <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblProccessor <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblRamSize <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblGpu <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">@ResAdmin.lblHardDist <i class="mdi mdi-chevron-down"></i></th>
+                                                <th>@ResGeneral.lblAction</th>
+                                                <th>@ResGeneral.lblAction</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                            @for (int i = 0; i < Model.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td> <img src="~/Admin/Uploads/Images/Items/@Model[i].ImageName" alt="Image" /> </td>
+                                                    <td> @Model[i].ItemName </td>
+                                                    <td> @Model[i].CategoryName </td>
+                                                    <td> @Model[i].ItemTypeName </td>
+                                                    <td> @Model[i].SalesPrice </td>
+                                                    <td> @Model[i].PurchasePrice </td>
+                                                    <td> @Model[i].Processor </td>
+                                                    <td> @Model[i].RamSize </td>
+                                                    <td> @Model[i].Gpu </td>
+                                                    <td> @Model[i].HardDisk </td>
+
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="Item" asp-action="Edit" asp-route-itemId="@Model[i].ItemId"
+                                                           class="btn btn-outline-info">@ResGeneral.lblEdit</a>
+                                                
+                                                    </td>
+
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="Item" asp-action="Delete" asp-route-itemId="@Model[i].ItemId"
+                                                           class="btn btn-outline-danger">@ResGeneral.lblDelete</a>
+                                                    </td>
+
+                                                </tr>
+
+
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+            <script src="~/Admin/assets/js/jq.tablesort.js"></script>
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <script src="~/Admin/assets/js/tablesorter.js"></script>
+
+
+        <script>
+            function Search(selectEle) 
+            {
+                    let categoryId = $(selectEle).val();
+                   window.location.href = "/admin/item/search?categoryid=" + categoryid;
+            }
+
+            function Filter(selectEle) 
+            {
+                let categoryName = $(selectEle).val();
+                let table = document.getElementById("sortable-table-2");
+                let rows = table.getElementsByTagName("tr");
+                let cell;
+                let cellContent;
+
+
+                for (var i = 0; i < rows.length; i++) 
+                {
+                    cell = rows[i].cells[2];
+
+                    cellContent = cell.textContent;
+
+
+                       
+                     if ((cellContent.trim())== (categoryName.trim()))
+                     {
+                           
+                            rows[i].style.display = '';
+                     }
+                     else 
+                     {
+       
+                            rows[i].style.display = 'none';
+                           
+                     }
+
+                }
+
+
+            }
+
+
+        </script>
+        }

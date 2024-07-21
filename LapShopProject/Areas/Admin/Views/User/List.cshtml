@@ -1,0 +1,152 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model List<SpUserRole>
+
+@* Plugin Css For This Page*@
+@section PluginCssForThisPage
+{
+
+}
+
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> User List </h3>
+
+                <div class="alert alert-danger list-group" role="alert" >
+
+                    <ul>
+
+                    @for (int i = 0; i < ViewBag.lstError.Count;i++){
+
+                            <li class="text-danger" >@ViewBag.lstError[i]</li>
+                    }
+                        
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"> Users</h4>
+                            <a href="/Admin/User/Register" class="card-subtitle btn btn-primary">@ResGeneral.lblNew</a>
+                            <div class="row">
+
+                                <div class="col-12 grid-margin">
+
+                                    <select asp-items="@(new SelectList(ViewBag.RoleList,"Name","Name"))" class="form-select"
+                                            style="  background-color: #080; color: #fff;  border: 1px solid #444; " onchange="Filter(this)">  </select>
+
+                                </div>
+
+
+                                <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                    <table id="sortable-table-2" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortStyle">FirstName <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">LastName <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">Email <i class="mdi mdi-chevron-down"></i></th>
+                                                <th class="sortStyle">Role <i class="mdi mdi-chevron-down"></i></th>
+                                                <th>@ResGeneral.lblAction</th>
+                                                <th>@ResGeneral.lblAction</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @for (int i = 0; i < Model.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td> @Model[i].FirstName </td>
+                                                    <td> @Model[i].LastName </td>
+                                                    <td> @Model[i].Email </td>
+                                                    <td> @Model[i].RoleName </td>
+
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@Model[i].UserId"
+                                                           class="btn btn-outline-info">@ResGeneral.lblEdit</a>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <a asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@Model[i].UserId"
+                                                           class="btn btn-outline-danger">@ResGeneral.lblDelete</a>
+                                                    </td>
+
+                                                </tr>
+
+
+
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+            <script src="~/Admin/assets/js/jq.tablesort.js"></script>
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <script src="~/Admin/assets/js/tablesorter.js"></script>
+
+
+            <script>
+
+                function Filter(selectEle) {
+                    let roleName = $(selectEle).val();
+                    let table = document.getElementById("sortable-table-2");
+                    let rows = table.getElementsByTagName("tr");
+                    let cell;
+                    let cellContent;
+
+
+                    for (var i = 0; i < rows.length; i++) {
+                        cell = rows[i].cells[3];
+
+                        cellContent = cell.textContent;
+
+
+
+                        if ((cellContent.trim()) == (roleName.trim())) {
+
+                            rows[i].style.display = '';
+                        }
+                        else {
+
+                            rows[i].style.display = 'none';
+
+                        }
+
+                    }
+
+
+                }
+
+
+            </script>
+        }

@@ -1,0 +1,88 @@
+﻿@model VwUser
+
+@{
+}
+
+
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>@ResWebsite.TitProfile</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ResWebsite.TitProfile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- personal deatail section start -->
+<section class="contact-page register-page">
+    <div class="container">
+        <div class="row">
+
+            <div class="alert alert-danger list-group" role="alert" asp-validation-summary="ModelOnly">
+            </div>
+
+            <div class="col-sm-12">
+                <h3>@ResWebsite.TitPERSONAL_DETAIL</h3>
+                <form class="theme-form" method="post" enctype="multipart/form-data" role="form"
+                      asp-controller="UserAccount" asp-action="UpdateProfile">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="name">@ResWebsite.TitFirstName</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="name" placeholder="@ResWebsite.TitFirstName"
+                                   required="">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">@ResWebsite.TitLastName</label>
+                            <input  asp-for="LastName" type="text" class="form-control" id="last-name" placeholder="@ResWebsite.TitLastName" required="">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">@ResWebsite.TitPhone</label>
+                            <input  asp-for="Phone" type="text" class="form-control" id="review" placeholder="@ResWebsite.TitPhone"
+                                   required="">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">@ResWebsite.TitEmail</label>
+                            <input asp-for="Email" type="email" class="form-control" id="email" placeholder="@ResWebsite.TitEmail" required="">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-sm btn-solid" type="submit">@ResWebsite.lblSave_setting</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+@section CustomScriptForThisPage
+{
+
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+}

@@ -1,0 +1,113 @@
+﻿@model VwSalesInvoice
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Sales Invoice </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item active" aria-current="page">Sales Invoice</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card px-2">
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <h3 class="text-right my-5">Invoice Id : @Model.InvoiceId</h3>
+                                <hr>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-between">
+                                <div class="col-lg-3 ps-0">
+                                    <p class="mt-5 mb-2"><b>Customer Info</b></p>
+                                    <p>@Model.FirstName @Model.LastName <br>@Model.Email</p>
+                                </div>
+                                <div class="col-lg-3 pe-0">
+                                    <p class="mt-5 mb-2 text-right"><b>Invoice to</b></p>
+                                    <p class="text-right">@Model.CountryName, <br>@Model.City<br>@Model.StreetName</p>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid d-flex justify-content-between">
+                                <div class="col-lg-3 ps-0">
+                                    <p class="mt-5 mb-2"><b>Invoic Info</b></p>
+                                    <p>@Model.CreatedBy @Model.CreatedDate <br>@Model.InvoiceDate</p>
+                                </div>
+                                <div class="col-lg-3 pe-0">
+                                    <p class="mt-5 mb-2 text-right"><b>Deliver Info</b></p>
+                                    <p class="text-right">@Model.CostDelivery, <br>@Model.City<br>@Model.DeliveryName</p>
+                                </div>
+                            </div>
+
+
+                            <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                                <div class="table-responsive w-100">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>Item Id</th>
+                                                <th>Item Name</th>
+                                                <th class="text-right">Quantity</th>
+                                                <th class="text-right">Unit cost</th>
+                                                <th class="text-right">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{
+                                                var slaesInvoiceItem = new TbSalesInvoiceItem();
+                                                decimal totalPriceOfInoive = 0;
+                                            }
+                                            @for (int i = 0; i < ViewBag.SalesInvoiceItems.Count; i++)
+                                            {
+
+                                                slaesInvoiceItem = ViewBag.SalesInvoiceItems[i];
+
+                                                <tr class="text-right">
+                                                    <td class="text-left">@slaesInvoiceItem.ItemId</td>
+                                                    <td class="text-left">@slaesInvoiceItem.Item.ItemName</td>
+                                                    <td>@slaesInvoiceItem.Qty</td>
+                                                    <td>@ResWebsite.DollarSign @slaesInvoiceItem.InvoicePrice</td>
+                                                    <td>@ResWebsite.DollarSign @(slaesInvoiceItem.InvoicePrice * (decimal)slaesInvoiceItem.Qty)</td>
+                                                </tr>
+
+                                                totalPriceOfInoive += (slaesInvoiceItem.InvoicePrice * (decimal)slaesInvoiceItem.Qty);
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="container-fluid mt-5 w-100">
+                                <p class="text-right mb-2">Total Price Of Invoice : @ResWebsite.DollarSign @totalPriceOfInoive</p>
+                                <p class="text-right">Cost Of Delivery : @ResWebsite.DollarSign @Model.CostDelivery</p>
+                                <h4 class="text-right mb-5">Total : @ResWebsite.DollarSign @(totalPriceOfInoive + Model.CostDelivery)</h4>
+                                <hr>
+                            </div>
+                            <div class="container-fluid w-100">
+                                <a href="#" class="btn btn-primary float-end mt-4 ms-2" onclick="printPage()">
+                                    <i class="mdi mdi-printer me-1"></i>Print
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @section CustomJsForThisPage
+        {
+            <script>
+                function printPage() {
+                    window.print();
+                }
+
+            </script>
+        }
+

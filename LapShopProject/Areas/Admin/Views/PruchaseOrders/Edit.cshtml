@@ -1,0 +1,322 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model VwPurchaseOrder
+
+@{
+}
+
+
+@section PluginCssForThisPage
+{
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <link href="~/custom/css/pagination.css" rel="stylesheet" />
+
+}
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Form elements </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <form method="post" role="form" asp-area="Admin" asp-controller="PruchaseOrders" asp-action="Save" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Pruchase Order</h4>
+
+
+                                <!--hidden inputs-->
+                                <input type="hidden" asp-for="InvoiceId" value="@Model.InvoiceId" />
+                                <!--hidden inputs-->
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">select supplier</label>
+                                    <select asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.lstSuppliers ,"SupplierId" , "SupplierName" ))"
+                                            class="form-select" id="exampleFormControlSelect1">
+                                    </select>
+
+                                </div>
+                                @*
+                                <h4 class="card-title">select items to Add to purchase invoice</h4>
+                                <div class="form-group">
+                                <label for="exampleFormControlSelect2">select category</label>
+                                <select asp-items="@(new SelectList(ViewBag.lstCategories,"CategoryId","CategoryName"))"
+                                class="form-select" id="exampleFormControlSelect2">
+                                </select>
+                                </div> *@
+
+
+                                <div class="form-group">
+                                    <div class="col-lg-12 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">All Items</h4>
+
+                                                <table class="table table-dark">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item ID</th>
+                                                            <th>Item Name</th>
+                                                            <th>Sales Price</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="ItemsArea">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="product-pagination">
+                                        <div class="theme-paggination-block" id="PaginationArea">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-12 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Items of Invoice</h4>
+
+                                                <table class="table table-dark" id="mytab1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item ID</th>
+                                                            <th>Item Name</th>
+                                                            <th>Sales Price</th>
+                                                            <th>Quantity</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="InvoicesItemsArea">
+                                                        @for (int i = 0; i < Model.lstPurchaseOrderItem.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td> <input asp-for="lstPurchaseOrderItem[i].ItemId" type="text" value="@Model.lstPurchaseOrderItem[i].ItemId" readonly /> </td>
+                                                                <td> @Model.lstPurchaseOrderItem[i].ItemName </td>
+                                                                <td> <input asp-for="lstPurchaseOrderItem[i].Price" type="text" value="@Model.lstPurchaseOrderItem[i].Price" readonly /> </td>
+                                                                <td> <input asp-for="lstPurchaseOrderItem[i].Qty" type="number" value="@Model.lstPurchaseOrderItem[i].Qty" /> </td>
+                                                                <td>
+                                                                    <a class="btn btn-outline-danger" onclick="DeleteRow(this)"> Delete </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <h4 class="card-title">Write Notes </h4>
+                                <div class="form-group">
+
+                                    <textarea asp-for="Notes" rows="4" cols="50"> @Model.Notes </textarea>
+                                    <span asp-validation-for="Notes" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-submit">Save</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section PluginJsForThisPage
+{
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+}
+
+@section CustomJsForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/file-upload.js"></script>
+    <script src="~/Admin/assets/js/typeahead.js"></script>
+    <script src="~/Admin/assets/js/select2.js"></script>
+    <!-- End custom js for this page -->
+    <!--Pagination start-->
+    <script src="~/Custom/js/pagination.js"> </script>
+    <!--Pagination start-->
+
+
+
+    <script>
+
+        let index = 0;
+
+        $(document).ready(function () {
+
+            var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+            var settings = {
+                "url": apiBaseUrl + "/api/item",
+                "method": "GET",
+                "timeout": 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+
+
+                let htmlData;
+
+                for (var i = 0; i < response.Data.length; i++) {
+
+                    htmlData += DrawItem(response.Data[i]);
+                }
+
+                console.log(response);
+
+
+
+                // Pagination script
+                $('#PaginationArea').pagination({
+                    dataSource: response.Data,
+                    pageSize: 10,
+                    showGoInput: true,
+                    showGoButton: true,
+                    callback: function (data, pagination) {
+                        // template method of yourself
+
+                        $('#ItemsArea').html(data.map(DrawItem).join(''));
+
+                    }
+                });
+
+            });
+
+
+
+            function DrawItem(item) {
+
+
+                let htmlRow = `
+
+                                            <tr class="table-info">
+                                                    <td>"${item.ItemId}"</td>
+                                                    <td>"${item.ItemName}"</td>
+                                                    <td>"${item.SalesPrice}"</td>
+                                                    <td>
+                                                     <a class="btn btn-outline-primary" onclick="AddToInvoice('${item.ItemId}' , '${item.SalesPrice}' , '${item.ItemName}')"> Add To Invoice </a>
+                                                    </td>
+                                           </tr>
+                                        `;
+
+                return htmlRow;
+            }
+
+
+
+
+
+
+
+
+
+        });
+
+        function AddToInvoice(itemId, price, itemName) {
+
+
+            let htmlTableRow = `
+                            <tr>
+                                      <td> <input type="text" value="${itemId}" readonly="" data-val="true" data-val-required="The ItemId field is required." id="lstPurchaseOrderItem_${index}__ItemId" name="lstPurchaseOrderItem[${index}].ItemId"> </td>
+                                      <td> ${itemName}</td>
+                                      <td> <input type="text" value="${price}" readonly="" data-val="true" data-val-number="The field Price must be a number." data-val-required="The Price field is required." id="lstPurchaseOrderItem_${index}__Price" name="lstPurchaseOrderItem[${index}].Price"> </td>
+                                      <td> <input type="number" value="1" data-val="true" data-val-number="The field Qty must be a number." data-val-required="The Qty field is required." id="lstPurchaseOrderItem_${index}__Qty" name="lstPurchaseOrderItem[${index}].Qty"><input name="__Invariant" type="hidden" value="lstPurchaseOrderItem[${index}].Qty"> </td>
+                                      <td>  <a class="btn btn-outline-danger" onclick="DeleteRow(this)"> Delete </a> </td>
+                            </tr>
+                            `;
+
+
+
+            // Get a reference to the tbody
+            const tbodyRef = document.getElementById('InvoicesItemsArea');
+
+            // Create a new row and set its inner HTML
+            const newRow = tbodyRef.insertRow();
+            newRow.innerHTML = htmlTableRow;
+
+            ++index;
+        }
+
+        function DeleteRow(tdElement) {
+
+            var row = tdElement.closest("tr");
+            if (row) {
+                row.parentNode.removeChild(row);
+            } else {
+                console.log("Row not found.");
+            }
+
+            --index;
+
+            var table = document.getElementById("mytab1"); // Replace with your actual table id
+            var allRows = table.rows;
+
+            console.log(allRows[0]);
+
+            for (var i = 1; i < allRows.length; i++) {
+                var rowEle = allRows[i];
+
+                var cells = rowEle.querySelectorAll("td"); // Get all <td> elements in this row
+
+
+
+
+
+                cells[0].querySelector("input").setAttribute("name", "lstPurchaseOrderItem[" + (i - 1) + "].ItemId");
+                cells[0].querySelector("input").setAttribute("id", "lstPurchaseOrderItem_" + (i - 1) + "__ItemId");
+
+                cells[2].querySelector("input").setAttribute("name", "lstPurchaseOrderItem[" + (i - 1) + "].Price");
+                cells[2].querySelector("input").setAttribute("id", "lstPurchaseOrderItem_" + (i - 1) + "__Price");
+
+                cells[3].querySelector("input").setAttribute("name", "lstPurchaseOrderItem[" + (i - 1) + "].Qty");
+                cells[3].querySelector("input").setAttribute("id", "lstPurchaseOrderItem_" + (i - 1) + "__Qty");
+
+            }
+
+            //console.log("end");
+        }
+
+    </script>
+
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+}

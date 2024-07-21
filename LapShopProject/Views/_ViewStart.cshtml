@@ -1,0 +1,22 @@
+﻿@using DataAccess.DaModels.Interfaces;
+@inject ISetting clsSetting
+@inject IContactInfo clsContactInfo
+@inject IPage clsPage;
+
+@{
+
+    Layout = "_Layout";
+
+    // Get the setting from database to layout
+    var setting = (clsSetting.GetAll()).FirstOrDefault();
+    ViewBag.Setting = (setting != null) ? setting : new TbSettings();
+
+    // Get the contact info from database to layout
+    var contactInfo = (await clsContactInfo.GetAll()).FirstOrDefault();
+    ViewBag.ContactInfo = (contactInfo != null) ? contactInfo : new TbContactInfo();
+
+    //Get the additional pages from database to layout
+    var lstAdditionalPages = clsPage.GetAll();
+    ViewBag.lstAdditionalPages = (lstAdditionalPages != null) ? lstAdditionalPages : new List<TbPage>(); 
+
+}

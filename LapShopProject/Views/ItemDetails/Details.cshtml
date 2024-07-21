@@ -1,0 +1,571 @@
+﻿@model VwItemDetails
+
+
+@{
+}
+
+@section PluginsCssForThisPage
+{
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/dropzone/dropzone.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-1to10.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-horizontal.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-movie.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-pill.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-reversed.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bars-square.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/bootstrap-stars.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/css-stars.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/examples.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-bar-rating/fontawesome-stars.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-asColorPicker/css/asColorPicker.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/x-editable/bootstrap-editable.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/dropify/dropify.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-file-upload/uploadfile.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jquery-tags-input/jquery.tagsinput.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css">
+    <!-- End plugin css for this page -->
+}
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>product</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ResWebsite.lblProduct</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section>
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-slick">
+
+                        @for (int i = 0; i < Math.Min(4, Model.lstItemImage.Count); i++)
+                        {
+                            <div>
+                                <img src="~/Admin/Uploads/Images/Items/@Model.lstItemImage[i].ImageName" alt=""
+                                     class="img-fluid blur-up lazyload image_zoom_cls-@i">
+
+                            </div>
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <div class="slider-nav">
+
+                                @for (int i = 4; i < Math.Min(8, Model.lstItemImage.Count); i++)
+                                {
+                                    <div>
+                                        <img src="~/Frontend/assets/images/pro3/1.jpg" alt=""
+                                             class="img-fluid blur-up lazyload">
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 rtl-text">
+                    <div class="product-right">
+                        <h2 class="mb-0">@Model.Item.ItemName</h2>
+                        <h5 class="mb-2">by <a >@Model.Item.CategoryName</a></h5>
+                        <h4><del>@Model.Item.SalesPrice</del><span> @Model.ItemDiscount.DiscountPercent @ResWebsite.lblOff</span></h4>
+                        <h3>@(Model.Item.SalesPrice * Model.ItemDiscount.DiscountPercent)</h3>
+
+                        <div class="product-description border-product">
+
+                            <h6 class="product-title">@ResWebsite.lblQuantity</h6>
+                            <div class="qty-box">
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <button type="button"
+                                                class="btn quantity-left-minus" data-type="minus" data-field="">
+                                            <i class="ti-angle-left"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-buttons">
+
+                                <a  asp-controller="Order" asp-action="AddToCart" asp-route-itemId="@Model.Item.ItemId"
+                                class="btn btn-solid">@ResWebsite.lblAddToCart</a>
+
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">@ResWebsite.TitProductDetails</h6>
+                            <p>
+                                @Model.Item.Description
+                            </p>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">@ResWebsite.TitShareIt</h6>
+                            <div class="product-icon">
+                                <ul class="product-social">
+                                    <li><a href="https://www.facebook.com/your-facebook-page" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://plus.google.com/your-google-plus-page" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="https://twitter.com/your-twitter-handle" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.instagram.com/your-instagram-handle" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="your-rss-feed-url.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+                                </ul>
+                                <form class="d-inline-block">
+                                    <button class="wishlist-btn">
+                                        <i class="fa fa-heart"></i><span class="title-font">@ResWebsite.lblAddToWishList</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">@ResWebsite.TitTimeReminder</h6>
+                            <div class="timer">
+                                <p id="demo">
+                                    <span>
+                                        @DateTime.Now.Day
+                                        <span class="padding-l">:</span>
+                                        <span class="timer-cal">@ResWebsite.TitDays</span>
+                                    </span>
+                                    <span>
+                                        @DateTime.Now.Hour
+                                        <span class="padding-l">:</span>
+                                        <span class="timer-cal">@ResWebsite.TitHrs</span>
+                                    </span>
+                                    <span>
+                                        @DateTime.Now.Minute
+                                        <span class="padding-l">:</span>
+                                        <span class="timer-cal">@ResWebsite.TitMin</span>
+                                    </span>
+                                    <span>
+                                        @DateTime.Now.Second
+                                        <span class="padding-l">:</span>
+                                        <span class="timer-cal">@ResWebsite.TitSec</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+<!-- product-tab starts -->
+<section class="tab-product m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="top-home-tab" data-toggle="tab"
+                           href="#top-home" role="tab" aria-selected="true">@ResWebsite.TitDescription</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-top-tab" data-toggle="tab"
+                           href="#top-profile" role="tab" aria-selected="false">@ResWebsite.TitDetails</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-top-tab" data-toggle="tab"
+                           href="#top-contact" role="tab" aria-selected="false">@ResWebsite.TitVideo</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-top-tab" data-toggle="tab"
+                           href="#top-review" role="tab" aria-selected="false">@ResWebsite.TitWriteReview</a>
+                        <div class="material-border"></div>
+                    </li>
+                </ul>
+                <div class="tab-content nav-material" id="top-tabContent">
+                    <div class="tab-pane fade show active" id="top-home" role="tabpanel"
+                         aria-labelledby="top-home-tab">
+                        <p>
+                            @Model.Item.Description
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
+                        <p>
+
+                        </p>
+                        <div class="single-product-tables">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>@ResWebsite.TitProccessor</td>
+                                        <td>@Model.Item.Processor</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@ResWebsite.TitRam</td>
+                                        <td>@Model.Item.RamSize</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@ResWebsite.TitGpu</td>
+                                        <td>@Model.Item.Gpu</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>@ResWebsite.TitHardDisk</td>
+                                        <td>@Model.Item.HardDisk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@ResWebsite.TitScreenReslution</td>
+                                        <td>@Model.Item.ScreenReslution</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>@ResWebsite.TitScreenSize</td>
+                                        <td>@Model.Item.ScreenSize</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
+                        <div class="mt-4 text-center">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/BUWzX78Ye_8"
+                                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
+
+
+                        <form class="theme-form" method="post" role="form"
+                              asp-controller="ItemDetails" asp-action="SaveReview" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="media">
+
+                                        <!--hidden input for view model-->
+                                          <input type="hidden" asp-for="VwReview" />
+                                          <input type="hidden" asp-for="ItemId" />
+                                        <!--hidden input for view model-->
+
+                                        <label>@ResWebsite.lblRating</label>
+                                        <div class="media-body ml-3">
+
+                                            <select asp-for="VwReview.Rating" id="example-fontawesome" autocomplete="off">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="name">@ResWebsite.TitName</label>
+                                    <input asp-for="VwReview.CustomerName" type="text" class="form-control" id="name" placeholder="Enter Your name">
+                                    <span class="text-danger" asp-validation-for="@Model.VwReview.CustomerName"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email">@ResWebsite.TitEmail</label>
+                                    <input asp-for="VwReview.CustomerEmail" type="text" class="form-control" id="email" placeholder="Email">
+                                    <span class="text-danger" asp-validation-for="@Model.VwReview.CustomerEmail"></span>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="review">@ResWebsite.TitReviewTitle</label>
+                                    <input asp-for="VwReview.ReviewTitle" type="text" class="form-control" id="review" placeholder="Enter your Review Subjects">
+                                    <span class="text-danger" asp-validation-for="@Model.VwReview.ReviewTitle"></span>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="review">@ResWebsite.TitReview_Des</label>
+                                    <textarea asp-for="VwReview.ReviewDescription" class="form-control" placeholder="Wrire Your Testimonial Here"
+                                              id="exampleFormControlTextarea1" rows="6"></textarea>
+                                    <span class="text-danger" asp-validation-for="@Model.VwReview.ReviewDescription"></span>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                    <button class="btn btn-solid" type="submit">
+                                        @ResWebsite.lblSubmitYourReview
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product-tab ends -->
+<!-- product section start -->
+<section class="section-b-space ratio_asos">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 product-related">
+                <h2>@ResWebsite.TitRelatedProducts</h2>
+            </div>
+        </div>
+        <div class="row search-product">
+
+            @foreach (var item in Model.lstRelatedItems)
+            {
+                <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="product-box">
+                        <div class="img-wrapper">
+                            <div class="front">
+
+                                <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="@item.ItemId">
+                                    <img src="~/Admin/Uploads/Images/Items/@item.ImageName"
+                                         class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
+                            </div>
+                            <div class="back">
+                                <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="@item.ItemId">
+                                    <img src="~/Admin/Uploads/Images/Items/@item.ImageName"
+                                         class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
+                            </div>
+                            <div class="cart-info cart-wrap">
+                                <a data-toggle="modal" asp-controller="Cart" asp-action="AddToCart" asp-route-itemId="@item.ItemId"  title="@ResWebsite.TitAddtoCart">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
+                                <a asp-controller="WishList" asp-action="AddToWishList" asp-route-itemId="@item.ItemId"
+                                   title="@ResWebsite.TitAdd_to_Wishlist">
+                                    <i class="ti-heart" aria-hidden="true"></i>
+                                </a>
+
+                                <a href="compare.html"
+                                   title="@ResWebsite.TitCompare">
+                                    <i class="ti-reload" aria-hidden="true"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="product-detail">
+                            <div class="rating">
+                                @if (Model.Item.Rating <= 0)
+                                {
+                                    <h6 class="text-primary">
+                                         @ResWebsite.TitNewItem
+                                    </h6>
+                                }
+                                else
+                                {
+
+                                    var idx = 0;
+
+                                    @for (; idx < Model.Item.Rating; idx++)
+                                    {
+                                        <i class="fa fa-star" style=" color: gold;"></i>
+                                    }
+
+                                    @for (; idx < 5; idx++)
+                                    {
+                                        <i class="fa fa-star" style=" color: #ccc;"></i>
+                                    }
+                                }
+
+
+                            </div>
+                            <a href="product-page(no-sidebar).html">
+                                <h6>@item.ItemName</h6>
+                            </a>
+                            <h4>@item.SalesPrice</h4>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- product section end -->
+@section CustomPopupForThisPage
+{
+    <!-- Add to cart modal popup start-->
+    <div class="modal fade bd-example-modal-lg theme-modal cart-modal" id="addtocart" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body modal1">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="modal-bg addtocart">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="media">
+                                        <a href="#">
+                                            <img class="img-fluid blur-up lazyload pro-img"
+                                                 src="~/Frontend/assets/images/fashion/product/43.jpg" alt="">
+                                        </a>
+                                        <div class="media-body align-self-center text-center">
+                                            <a href="#">
+                                                <h6>
+                                                    <i class="fa fa-check"></i>Item
+                                                    <span>men full sleeves</span>
+                                                    <span> successfully added to your Cart</span>
+                                                </h6>
+                                            </a>
+                                            <div class="buttons">
+                                                <a asp-controller="Order" asp-action="Cart"  
+                                                class="view-cart btn btn-solid">Your cart</a>
+                                                <a href="#" class="checkout btn btn-solid">Check out</a>
+                                                <a href="#" class="continue btn btn-solid">Continue shopping</a>
+                                            </div>
+
+                                            <div class="upsell_payment">
+                                                <img src="~/Frontend/assets/images/payment_cart.png"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-section">
+                                        <div class="col-12 product-upsell text-center">
+                                            <h4>Customers who bought this item also.</h4>
+                                        </div>
+                                        <div class="row" id="upsell_product">
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="~/Frontend/assets/images/fashion/product/1.jpg"
+                                                                 class="img-fluid blur-up lazyload mb-1"
+                                                                 alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="~/Frontend/assets/images/fashion/product/34.jpg"
+                                                                 class="img-fluid blur-up lazyload mb-1"
+                                                                 alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="~/Frontend/assets/images/fashion/product/13.jpg"
+                                                                 class="img-fluid blur-up lazyload mb-1"
+                                                                 alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="~/Frontend/assets/images/fashion/product/19.jpg"
+                                                                 class="img-fluid blur-up lazyload mb-1"
+                                                                 alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add to cart modal popup end-->
+}
+
+@section PluginsJsForThisPage
+{
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="~/Admin/assets/vendors/jquery-asColor/jquery-asColor.min.js"></script>
+    <script src="~/Admin/assets/vendors/jquery-asGradient/jquery-asGradient.min.js"></script>
+    <script src="~/Admin/assets/vendors/jquery-asColorPicker/jquery-asColorPicker.min.js"></script>
+    <script src="~/Admin/assets/vendors/x-editable/bootstrap-editable.min.js"></script>
+    <script src="~/Admin/assets/vendors/moment/moment.min.js"></script>
+    <script src="~/Admin/assets/vendors/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js"></script>
+    <script src="~/Admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/Admin/assets/vendors/dropify/dropify.min.js"></script>
+    <script src="~/Admin/assets/vendors/jquery-file-upload/jquery.uploadfile.min.js"></script>
+    <script src="~/Admin/assets/vendors/jquery-tags-input/jquery.tagsinput.min.js"></script>
+    <script src="~/Admin/assets/vendors/dropzone/dropzone.js"></script>
+    <script src="~/Admin/assets/vendors/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="~/Admin/assets/vendors/inputmask/jquery.inputmask.bundle.js"></script>
+    <!-- End plugin js for this page -->
+}
+
+
+@section CustomScriptForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/formpickers.js"></script>
+    <script src="~/Admin/assets/js/form-addons.js"></script>
+    <script src="~/Admin/assets/js/x-editable.js"></script>
+    <script src="~/Admin/assets/js/dropify.js"></script>
+    <script src="~/Admin/assets/js/dropzone.js"></script>
+    <script src="~/Admin/assets/js/jquery-file-upload.js"></script>
+    <script src="~/Admin/assets/js/formpickers.js"></script>
+    <script src="~/Admin/assets/js/form-repeater.js"></script>
+    <script src="~/Admin/assets/js/inputmask.js"></script>
+    <!-- End custom js for this page -->
+    <!-- Zoom js-->
+    <script src="~/Frontend/assets/js/jquery.elevatezoom.js"></script>
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Validation File Js-->
+}
+
+
+

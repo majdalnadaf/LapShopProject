@@ -1,0 +1,182 @@
+﻿@model TbPage
+
+
+
+@section PluginCssForThisPage
+{
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/codemirror/codemirror.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/codemirror/ambiance.css">
+    <!-- End plugin css for this page -->
+
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">Additional Pages</h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="alert alert-danger list-group" role="alert" asp-validation-summary="ModelOnly">
+           
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Additional Pages Edit</h4>
+
+                            <form class="forms-sample" enctype="multipart/form-data" method="post" role="form"
+                                  asp-area="Admin" asp-controller="AdditionalPages" asp-action="Save">
+
+
+
+                                <!-- hidden input -->
+                                <input type="hidden" asp-for="PageId" value="@Model.PageId" />
+
+                                <input type="hidden" id="hiddenHtmlContent" value="@Model.HtmlContent" asp-for="HtmlContent" />
+                                <input type="hidden" id="hiddenMetaTagsHtml" value="@Model.MetaTagsHtml" asp-for="MetaTagsHtml" />
+                                <input type="hidden" id="hiddenJsContent" value="@Model.JsContent" asp-for="JsContent" />
+                                <input type="hidden" id="hiddenCssContent" value="@Model.CssContent" asp-for="CssContent" />
+
+                                <!-- hidden input -->
+
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Page Title</label>
+                                    <input asp-for="Title" type="text" class="form-control" id="exampleInputName1" placeholder="Title">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="ShowInHomePage" type="checkbox" class="form-check-input" id="ShowInHomePage">
+                                        Show in Home Page
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12 grid-margin">
+                                    <h5 class="card-subtitle">Meta Tags Html Content</h5>
+                                    <textarea id="ace_meta"  class="ace-editor w-100">
+                                        @Model.MetaTagsHtml
+                                    </textarea>
+                                </div>
+
+                                <div class="col-md-12 grid-margin">
+                                    <h5 class="card-subtitle">HTML Content</h5>
+                                  
+                                    <textarea id="ace_html" class="ace-editor w-100">
+                                        @Model.HtmlContent
+                                    </textarea>
+
+                                </div>
+
+                                <div class="col-md-12 grid-margin">
+                                    <h5 class="card-subtitle">Javascript Code</h5>
+                                    <textarea  id="ace_javaScript" class="ace-editor w-100">
+                                        @Model.JsContent
+                                    </textarea>
+                                </div>
+                                 
+                                <div class="col-md-12 grid-margin">
+                                    <h5 class="card-subtitle">CSS Mode</h5>
+                                    <textarea  id="ace_css" class="ace-editor w-100">
+                                        @Model.CssContent
+                                     </textarea>
+                                </div>
+
+
+                                    <button type="submit" class="btn btn-gradient-primary me-2">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section PluginJsForThisPage
+{
+    <!--plugin js for this page -->
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="~/Admin/assets/vendors/ace-builds/src-min/ace.js"></script>
+    <script src="~/Admin/assets/vendors/ace-builds/src-min/mode-javascript.js"></script>
+    <script src="~/Admin/assets/vendors/ace-builds/src-min/theme-chaos.js"></script>
+    <script src="~/Admin/assets/vendors/codemirror/codemirror.js"></script>
+    <script src="~/Admin/assets/vendors/codemirror/javascript.js"></script>
+    <!-- end plugin js for this page -->
+}
+
+@section CustomJsForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/file-upload.js"></script>
+    <script src="~/Admin/assets/js/typeahead.js"></script>
+    <script src="~/Admin/assets/js/select2.js"></script>
+    <script src="~/Admin/assets/js/codeEditor.js"></script>
+    <!-- End custom js for this page -->
+
+    <script>
+
+        const htmlEditor = ace.edit("ace_html"); // Assuming "ace_html" is the ID of your editor
+        const htmlHiddenField = document.getElementById("hiddenHtmlContent");
+
+        htmlEditor.getSession().on("change", function () {
+            const content = htmlEditor.getValue();
+            htmlHiddenField.value = content;
+        });
+
+
+
+        const metaEditor = ace.edit("ace_meta"); // Assuming "ace_meta" is the ID of your editor
+        const metaHiddenField = document.getElementById("hiddenMetaTagsHtml");
+
+        metaEditor.getSession().on("change", function () {
+            const content = metaEditor.getValue();
+            metaHiddenField.value = content;
+        });
+
+        const jsEditor = ace.edit("ace_javaScript"); // Assuming "ace_javaScript" is the ID of your editor
+        const jsHiddenField = document.getElementById("hiddenJsContent");
+
+        jsEditor.getSession().on("change", function () {
+            const content = jsEditor.getValue();
+            jsHiddenField.value = content;
+        });
+
+
+        const cssEditor = ace.edit("ace_css"); // Assuming "ace_css" is the ID of your editor
+        const cssHiddenField = document.getElementById("hiddenCssContent");
+
+        cssEditor.getSession().on("change", function () {
+            const content = cssEditor.getValue();
+            cssHiddenField.value = content;
+        });
+
+
+    </script>
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+}

@@ -1,0 +1,274 @@
+﻿@model TbSettings
+
+
+
+
+
+
+
+@section PluginCssForThisPage
+{
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Websites Setting </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item active" aria-current="page">Setting</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Websites Setting</h4>
+
+                            <form class="forms-sample" enctype="multipart/form-data" method="post" role="form" 
+                            asp-area="Admin" asp-controller="Setting" asp-action="Save">
+
+
+
+                            <!-- hidden input -->
+                            <input type="hidden" asp-for="SettingId" value="@Model.SettingId" />
+                            <!-- hidden input -->
+
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Location</label>
+                                    <input asp-for="Location" type="text" class="form-control" id="exampleInputName1" placeholder="Location">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Header Statement</label>
+                                    <input asp-for="HeaderStatement" type="text" class="form-control" id="exampleInputEmail3" placeholder="Header Statement">
+                                    <span asp-validation-for="HeaderStatement" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword4">Email</label>
+                                    <input asp-for="Email" type="Email" class="form-control" id="exampleInputPassword4" placeholder="Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword4">Number Call Us</label>
+                                    <input asp-for="NumberCallUs" type="text" class="form-control" id="exampleInputPassword4" placeholder="Number Call Us">
+                                    <span asp-validation-for="NumberCallUs" class="text-danger"></span>
+                                </div>
+
+                                 
+                                <!-- AdvertisementBanner -->
+                                <div class="form-group form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input asp-for="AdvertisementBanner" type="checkbox" class="form-check-input" id="AdvertisementBanner">
+                                         Advertisement Banner
+                                    </label>
+
+                                </div>
+
+                                <!-- AdvertismenetLink -->
+                                <div class="form-group">
+                                    <label for="advertismenetLink">Advertisement Link</label>
+                                    <input asp-for="AdvertismenetLink" type="text" class="form-control" id="advertismenetLink" placeholder="Advertisement Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParagraphTitle -->
+                                <div class="form-group">
+                                    <label for="paragraphTitle">Paragraph Title</label>
+                                    <input asp-for="ParagraphTitle" type="text" class="form-control" id="paragraphTitle" placeholder="Paragraph Title">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParagraphDescription -->
+                                <div class="form-group">
+                                    <label for="paragraphDescription">Paragraph Description</label>
+                                    <input asp-for="ParagraphDescription" type="text" class="form-control" id="paragraphDescription" placeholder="Paragraph Description">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParagraphSubTitle -->
+                                <div class="form-group">
+                                    <label for="paragraphSubTitle">Paragraph Subtitle</label>
+                                    <input asp-for="ParagraphSubTitle" type="text" class="form-control" id="paragraphSubTitle" placeholder="Paragraph Subtitle">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParallaxBannerTitle -->
+                                <div class="form-group">
+                                    <label for="parallaxBannerTitle">Parallax Banner Title</label>
+                                    <input asp-for="ParallaxBannerTitle" type="text" class="form-control" id="parallaxBannerTitle" placeholder="Parallax Banner Title">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParallaxBannerSubTitle -->
+                                <div class="form-group">
+                                    <label for="parallaxBannerSubTitle">Parallax Banner Subtitle</label>
+                                    <input asp-for="ParallaxBannerSubTitle" type="text" class="form-control" id="parallaxBannerSubTitle" placeholder="Parallax Banner Subtitle">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ParallaxBannerDescription -->
+                                <div class="form-group">
+                                    <label for="parallaxBannerDescription">Parallax Banner Description</label>
+                                    <input asp-for="ParallaxBannerDescription" type="text" class="form-control" id="parallaxBannerDescription" placeholder="Parallax Banner Description">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- Logo -->
+                                <div class="form-group">
+                                    <label for="logo">Logo</label>
+                                    <input name="Files" type="file" class="form-control" id="logo" placeholder="Logo">
+                                </div>
+
+                                <!-- Title -->
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="Title">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- Description -->
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input asp-for="Description" type="text" class="form-control" id="description" placeholder="Description">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- YoutubeLink -->
+                                <div class="form-group">
+                                    <label for="youtubeLink">YouTube Link</label>
+                                    <input asp-for="YoutubeLink" type="text" class="form-control" id="youtubeLink" placeholder="YouTube Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- FacebookLink -->
+                                <div class="form-group">
+                                    <label for="facebookLink">Facebook Link</label>
+                                    <input asp-for="FacebookLink" type="text" class="form-control" id="facebookLink" placeholder="Facebook Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- TwitterLink -->
+                                <div class="form-group">
+                                    <label for="twitterLink">Twitter Link</label>
+                                    <input asp-for="TwitterLink" type="text" class="form-control" id="twitterLink" placeholder="Twitter Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- InstgramLink -->
+                                <div class="form-group">
+                                    <label for="instgramLink">Instagram Link</label>
+                                    <input asp-for="InstgramLink" type="text" class="form-control" id="instgramLink" placeholder="Instagram Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ShopPageTopSliderImage -->
+                                <div class="form-group">
+                                    <label for="shopPageTopSliderImage">Shop Page Top Slider Image</label>
+                                    <input name="shopPageTopSliderImage" type="file" class="form-control" id="shopPageTopSliderImage" placeholder="Shop Page Top Slider Image">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ShopPageTopSliderLink -->
+                                <div class="form-group">
+                                    <label for="shopPageTopSliderLink">Shop Page Top Slider Link</label>
+                                    <input asp-for="ShopPageTopSliderLink" type="text" class="form-control" id="shopPageTopSliderLink" placeholder="Shop Page Top Slider Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                        
+                                <!-- ShopPageTopSliderTitle -->
+                                <div class="form-group">
+                                    <label for="shopPageTopSliderTitle">Shop Page Top Slider Title</label>
+                                    <input asp-for="ShopPageTopSliderTitle" type="text" class="form-control" id="shopPageTopSliderTitle" placeholder="Shop Page Top Slider Title">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ShopPageTopSliderDescription -->
+                                <div class="form-group">
+                                    <label for="shopPageTopSliderDescription">Shop Page Top Slider Description</label>
+                                    <input asp-for="ShopPageTopSliderDescription" type="text" class="form-control" id="shopPageTopSliderDescription" placeholder="Shop Page Top Slider Description">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ShopPageLeftDownSliderImage -->
+                                <div class="form-group">
+                                    <label for="shopPageLeftDownSliderImage">Shop Page Left Down Slider Image</label>
+                                    <input name="ShopPageLeftDownSliderImage" type="file" class="form-control" id="shopPageLeftDownSliderImage" placeholder="Shop Page Left Down Slider Image">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!-- ShopPageLeftDownSliderLink -->
+                                <div class="form-group">
+                                    <label for="shopPageLeftDownSliderLink">Shop Page Left Down Slider Link</label>
+                                    <input asp-for="ShopPageLeftDownSliderLink" type="text" class="form-control" id="shopPageLeftDownSliderLink" placeholder="Shop Page Left Down Slider Link">
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                                </div>
+
+                                <!---->
+
+                               <button type="submit" class="btn btn-gradient-primary me-2">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section PluginJsForThisPage
+{
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+}
+
+@section CustomJsForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/file-upload.js"></script>
+    <script src="~/Admin/assets/js/typeahead.js"></script>
+    <script src="~/Admin/assets/js/select2.js"></script>
+    <!-- End custom js for this page -->
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+}

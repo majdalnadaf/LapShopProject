@@ -1,0 +1,95 @@
+﻿@model List<TbCountry>
+
+@* Plugin Css For This Page*@
+@section PluginCssForThisPage
+{
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End plugin css for this page -->
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Countries table </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Countries</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Countries Data table</h4>
+                    <a href="/Admin/country/Edit" class="card-subtitle btn btn-primary">@ResGeneral.lblNew</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <table id="order-listing" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Country Id</th>
+                                        <th>Country Name</th>
+                                        <th>Country Code</th>
+                                        <th>Delivery Cost</th>
+                                        <th>Actions</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach (var country in Model)
+                                    {
+
+
+                                        <tr>
+                                            <td>@country.CountryId</td>
+                                            <td>@country.CountryName</td>
+                                            <td>@country.CountryCode</td>
+                                            <td>@country.CostDelivery</td>
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="Country" asp-action="Edit" asp-route-countryId="@country.CountryId"
+                                                   class="btn btn-outline-info">Edit</a>
+                                            </td>
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="Country" asp-action="Delete" asp-route-countryId="@country.CountryId"
+                                                   class="btn btn-outline-danger">Delete</a>
+                                            </td>
+
+                                        </tr>
+
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+            <!-- Plugin js for this page -->
+            <script src="~/Admin/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <!-- End plugin js for this page -->
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <!-- Custom js for this page -->
+            <script src="~/Admin/assets/js/data-table.js"></script>
+            <!-- End custom js for this page -->
+        }

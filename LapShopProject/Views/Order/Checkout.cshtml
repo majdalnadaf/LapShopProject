@@ -1,0 +1,197 @@
+﻿@model VwCheckout
+
+
+@{
+}
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>@ResWebsite.TitCheckout</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ResWebsite.TitCheckout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="checkout-page">
+            <div class="checkout-form">
+                <form method="post" enctype="multipart/form-data" role="form" asp-controller="Order" asp-action="OrderSuccess">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="checkout-title">
+                                <h3>Billing Details</h3>
+                            </div>
+                            <div class="row check-out">
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitFirstName</div>
+                                    <input disabled type="text"   value="@ViewBag.User.FirstName" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitLastName</div>
+                                    <input disabled type="text" value="@ViewBag.User.LastName" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitEmail</div>
+                                    <input disabled type="text" value="@ViewBag.User.Email" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitPhone</div>
+                                    <input disabled type="text" value="@ViewBag.User.PhoneNumber" placeholder="">
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Country</div>
+                                    <select onchange="GetDeliveryCost(this)"
+                                            asp-for="CountryId" asp-items="@(new SelectList(ViewBag.Countries,"CountryId","CountryName"))">
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitAddress</div>
+                                    <input asp-for="StreetAddress" type="text" placeholder="Street address">
+                                    <span asp-validation-for="StreetAddress"  class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitTown_City</div>
+                                    <input asp-for="City" type="text"  placeholder="@ResWebsite.TitTown_City">
+                                    <span asp-validation-for="City" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group col-md-12 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitState___County</div>
+                                    <input asp-for="State" type="text"  placeholder="@ResWebsite.TitState___County">
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-6 col-xs-12">
+                                    <div class="field-label">@ResWebsite.TitPostal_Code</div>
+                                    <input asp-for="PostalCode" type="text" placeholder="@ResWebsite.TitPostal_Code">
+                                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="checkout-details">
+                                <div class="order-box">
+                                    <div class="title-box">
+                                        <div>Product <span>Total</span></div>
+                                    </div>
+                                    <ul class="qty">
+                                        @foreach(var item in ViewBag.ShoppinCart.lstItem)
+                                        {
+                                            <li>@item.ItemName × @item.Qty <span>$@item.TotalPrice</span></li>
+
+                                        }
+
+                                    </ul>
+                                    <ul class="sub-total">
+                                        <li>Subtotal <span id="subTotalItems" class="count">$@ViewBag.ShoppinCart.TotalPriceOfAllItems</span></li>
+                                    </ul> 
+                                    <ul class="shipping sub-total">
+                                        <li>shipping <span id="shippingCost" class="count">$0.00</span></li>
+                                    </ul>
+                                    <ul class="total">
+                                        <li>Total <span id="totalPriceOfInvoice" class="count">$@ViewBag.ShoppinCart.TotalPriceOfAllItems</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="payment-box">
+                                    <div class="upper-box">
+                                        <div class="payment-options">
+                                            <ul>
+                                                <li>
+                                                    <div class="radio-option">
+                                                        <input type="radio" name="payment-group" id="payment-2">
+                                                        <label for="payment-2"> Cash On Delivery </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="radio-option paypal">
+                                                        <input type="radio" name="payment-group" id="payment-3">
+                                                        <label for="payment-3"> PayPal </label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="text-right"><button type="submit" class="btn-solid btn">@ResGeneral.lblSave</button></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+@section CustomScriptForThisPage
+{
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+
+    <script>
+
+        function GetDeliveryCost(selectElement) 
+        {
+
+            const countryId = selectElement.value;
+
+            var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+            var settings = {
+                "url": (apiBaseUrl + "/api/Country/" + countryId),
+                "method": "GET",
+                "timeout": 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+               
+
+                let deliveryCost = parseFloat(response.data.costDelivery);
+            
+
+            $("#shippingCost").html("$" + deliveryCost);
+            let totalPriceOfInvoiceEle = $("#totalPriceOfInvoice");
+            let subTotalItemsEle = $("#subTotalItems");
+            let nSubTotalItems = subTotalItemsEle.html().replace("$", "");
+                
+                console.log(nSubTotalItems);
+
+                nSubTotalItems = parseFloat(nSubTotalItems);
+
+            // add delivery cost to total invoice
+                let nTotalCost = nSubTotalItems + deliveryCost;
+
+                totalPriceOfInvoiceEle.html("$" + nTotalCost);
+
+    
+
+            });
+
+        }
+
+
+
+    </script>
+}

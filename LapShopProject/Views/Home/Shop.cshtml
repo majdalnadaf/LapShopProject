@@ -1,0 +1,462 @@
+﻿@model VwShop
+
+
+@section PluginsCssForThisPage
+{
+    <!-- Price range icon -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/price-range.css">
+    <link href="~/custom/css/pagination.css" rel="stylesheet" />
+    <link href="~/custom/css/MyOrders.css" rel="stylesheet" />
+
+}
+
+
+
+
+
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>collection</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">collection</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb end -->
+<!-- section start -->
+<section class="section-b-space ratio_asos">
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 collection-filter">
+                    <!-- side-bar colleps block stat -->
+                    <div class="collection-filter-block">
+                        <!-- brand filter start -->
+                        <div class="collection-mobile-back">
+                            <span class="filter-back">
+                                <i class="fa fa-angle-left"
+                                   aria-hidden="true"></i> back
+                            </span>
+                        </div>
+                        <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">brand</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter">
+                                    @for (int i = 0; i < Model.lstCategory.Count; i++)
+                                    {
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input checked onclick="FilterByCategory(this)" type="checkbox" class="custom-control-input checkboxInput" id="@Model.lstCategory[i].CategoryId">
+                                            <label class="custom-control-label" for="@Model.lstCategory[i].CategoryId">@Model.lstCategory[i].CategoryName</label>
+                                        </div>
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- silde-bar colleps block end here -->
+                    <!-- side-bar single product slider start -->
+                    <div class="theme-card">
+                        <h5 class="title-border">new product</h5>
+                        <div class="offer-slider slide-1" >
+                            <div>
+                                @{var idx = 0;
+                                }
+                                @for(; idx < Model.lstNewItem.Count / 2; idx++ )
+                                {
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload" src="~/Admin/Uploads/Images/Items/@Model.lstNewItem[idx].ImageName" alt=""></a>
+                                        <div class="media-body align-self-center">
+
+                                            <div class="rating">
+                                                @if (Model.lstNewItem[idx].Rating <= 0)
+                                                {
+                                                    <h6 class="text-primary">
+                                                        @ResWebsite.TitNewItem
+                                                    </h6>
+                                                }
+                                                else
+                                                {
+
+                                                    var j = 0;
+
+                                                    @for (; j < Model.lstNewItem[idx].Rating; j++)
+                                                    {
+                                                        <i class="fa fa-star" style=" color: gold;"></i>
+                                                    }
+
+                                                    @for (; j < 5; j++)
+                                                    {
+                                                        <i class="fa fa-star" style=" color: #ccc;"></i>
+                                                    }
+                                                }
+                                            </div>
+
+                                            <a href="product-page(no-sidebar).html">
+                                                <h6>@Model.lstNewItem[idx].ItemName</h6>
+                                            </a>
+                                            <h4>@ResWebsite.DollarSign @Model.lstNewItem[idx].SalesPrice</h4>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                            <div>
+
+                                @for (; idx < Model.lstNewItem.Count; idx++)
+                                {
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload" src="~/Admin/Uploads/Images/Items/@Model.lstNewItem[idx].ImageName" alt=""></a>
+                                        <div class="media-body align-self-center">
+
+                                            <div class="rating">
+                                                @if (Model.lstNewItem[idx].Rating <= 0)
+                                                {
+                                                    <h6 class="text-primary">
+                                                        @ResWebsite.TitNewItem
+                                                    </h6>
+                                                }
+                                                else
+                                                {
+
+                                                    var j = 0;
+
+                                                    @for (; j < Model.lstNewItem[idx].Rating; j++)
+                                                    {
+                                                        <i class="fa fa-star" style=" color: gold;"></i>
+                                                    }
+
+                                                    @for (; j < 5; j++)
+                                                    {
+                                                        <i class="fa fa-star" style=" color: #ccc;"></i>
+                                                    }
+                                                }
+                                            </div>
+
+                                            <a href="product-page(no-sidebar).html">
+                                                <h6>@Model.lstNewItem[idx].ItemName</h6>
+                                            </a>
+                                            <h4>@ResWebsite.DollarSign @Model.lstNewItem[idx].SalesPrice</h4>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- side-bar single product slider end -->
+                    <!-- side-bar banner start here -->
+                    <div class="collection-sidebar-banner">
+                        <a href="@Model.Setting.ShopPageLeftDownSliderLink"><img src="~/Admin/Uploads/Images/Sliders/@Model.Setting.ShopPageLeftDownSliderImage" class="img-fluid blur-up lazyload" alt=""></a>
+                    </div>
+                    <!-- side-bar banner end here -->
+                </div>
+                <div class="collection-content col">
+                    <div class="page-main-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="top-banner-wrapper">
+                                    <a href="@Model.Setting.ShopPageTopSliderLink"><img src="~/Admin/Uploads/Images/Sliders/@Model.Setting.ShopPageTopSliderImage" class="img-fluid blur-up lazyload" alt=""></a>
+                                    <div class="top-banner-content small-section">
+                                        <h4>@Model.Setting.ShopPageTopSliderTitle</h4>
+                                        <p>
+                                            @Model.Setting.ShopPageTopSliderDescription
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="collection-product-wrapper">
+                                    <div class="product-top-filter">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="filter-main-btn">
+                                                    <span class="filter-btn btn btn-theme">
+                                                        <i class="fa fa-filter"
+                                                           aria-hidden="true"></i> @ResWebsite.TitFilter
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="product-filter-content">
+                                                    <div class="search-count">
+                                                        <h5> @ResWebsite.TitProducts</h5>
+                                                    </div>
+                                                    <div class="collection-view">
+                                                        <ul>
+                                                            <li><i class="fa fa-th grid-layout-view"></i></li>
+                                                            <li><i class="fa fa-list-ul list-layout-view"></i></li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-wrapper-grid">
+                                        <div class="row margin-res" id="ItemsArea">
+                                            <ul>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-pagination">
+                                        <div class="theme-paggination-block" id="PaginationArea">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- section End -->
+@section CustomScriptForThisPage {
+
+
+    <!-- price range js -->
+    <script src="~/Frontend/assets/js/price-range.js"></script>
+
+    <!--Pagination start-->
+    <script src="~/Custom/js/pagination.js"> </script>
+    <!--Pagination start-->
+
+
+
+    <script>
+
+
+
+
+        function FilterByCategory(cb) {
+
+            let categoryId = cb.id;
+            console.log(categoryId);
+
+
+
+            let divs = document.getElementsByClassName('category-' + categoryId);
+
+
+
+            if (cb.checked) {
+
+                for (var i = 0; i < divs.length; i++) {
+
+          
+                    divs[i].style.display = "block";
+                }
+
+            } else {
+
+ 
+
+
+                for (var i = 0; i < divs.length; i++) {
+
+      
+                    divs[i].style.display = "none";
+
+                }
+            }
+
+
+
+        };
+
+        function GetAllCheckBoxes() {
+
+
+           
+                var checkboxes = document.getElementsByClassName("checkboxInput");
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (!checkboxes[i].checked) {
+
+                        FilterByCategory(checkboxes[i]);
+
+                    }
+                }
+            
+        }
+
+        $(document).ready(function () {
+
+     
+
+            var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+           
+            var settings = {
+                "url": apiBaseUrl + "/api/item",
+                "method": "GET",
+                "timeout": 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+
+
+                let htmlData;
+
+                for (var i = 0; i < response.Data.length; i++) {
+
+                    htmlData += DrawItem(response.Data[i]);
+                }
+
+
+
+
+                // Pagination script
+                $('#PaginationArea').pagination({
+                    dataSource: response.Data,
+                    pageSize: 32,
+                    showGoInput: true,
+                    showGoButton: true,
+                    callback: function (data, pagination) {
+                        // template method of yourself
+
+                        $('#ItemsArea').html(data.map(DrawItem).join(''));
+
+                        // Call the function to set up the click handlers
+                        addClickHandlers();
+                    }
+                });
+
+            });
+
+
+            function DrawItem(item) {
+
+
+
+
+
+                const productBoxHtml = `
+                 <div class="col-xl-3 col-6 col-grid-box category-${item.CategoryId}" >
+                    <div class="product-box">
+                        <div class="img-wrapper">
+                            <div class="front">
+                                <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="${item.ItemId}">
+                                            <img src="~/Admin/Uploads/Images/Items/${item.ImageName}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
+                            </div>
+                            <div class="back">
+                                <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="${item.ItemId}">
+                                            <img src="~/Admin/Uploads/Images/Items/${item.ImageName}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
+                            </div>
+                            <div class="cart-info cart-wrap">
+                                <a asp-controller="Order" asp-action="AddToCart" asp-route-itemId="${item.ItemId}" title="Add to cart">
+                                    <i class="ti-shopping-cart" aria-hidden="true"></i>
+                                </a>
+                                <a asp-controller="UserWishList" asp-action="AddToWishList" asp-route-itemId="${item.ItemId}" title="Add to Wishlist">
+                                    <i class="ti-heart" aria-hidden="true"></i>
+                                </a>
+                                <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="${item.ItemId}"
+                                    data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                    <i class="ti-search" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-detail">
+                            <div class="rating">
+                                ${item.Rating <= 0
+                        ? `<h6 class="text-primary">@ResWebsite.TitNewItem</h6>`
+                        : (() => {
+                            let starsHtml = '';
+                            for (let idx = 1; idx <= item.Rating; idx++) {
+                                starsHtml += `<i class="fa fa-star" style="color: gold;"></i>`;
+                            }
+                            for (let idx = item.Rating; idx <= 5; idx++) {
+                                starsHtml += `<i class="fa fa-star" style="color: #ccc;"></i>`;
+                            }
+                            return starsHtml;
+                        })()
+                    }
+                            </div>
+                                                <h6>${item.ItemName}</h6>
+
+                            <h4>@ResWebsite.DollarSign ${item.SalesPrice}</h4>
+                        </div>
+                    </div>
+                </div>`;
+
+                return productBoxHtml;
+
+
+
+            };
+
+
+
+
+           
+
+
+
+            function addClickHandlers() {
+
+                var myList = document.querySelector('#PaginationArea ul'); // Select the <ul> element
+     
+                var liElements = myList.querySelectorAll('li'); // Get all <li> elements within the <ul>
+
+
+                liElements.forEach(function (li) {
+                    li.onclick = function () {
+
+               
+                            GetAllCheckBoxes();
+                     
+
+
+                    };
+                });
+            }
+
+          
+           
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+    </script>
+
+
+
+}

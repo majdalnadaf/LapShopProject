@@ -1,0 +1,100 @@
+﻿@model List<TbPage>
+
+@* Plugin Css For This Page*@
+@section PluginCssForThisPage
+{
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End plugin css for this page -->
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Additional Pages table </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Additional Pages</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Additional Pages Data table</h4>
+                    <a href="/Admin/AdditionalPages/Edit" class="card-subtitle btn btn-primary">@ResGeneral.lblNew</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <table id="order-listing" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Page Id</th>
+                                        <th>Page Title</th>
+                                        <th>Show in Home Page</th>
+                                        <th>Actions</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach (var pageItem in Model)
+                                    {
+
+
+                                        <tr>
+                                            <td>@pageItem.PageId</td>
+                                            <td>@pageItem.Title</td>
+                                            @if (!pageItem.ShowInHomePage)
+                                            {
+                                                <td class="text-danger">No</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-success">Yes</td>
+                                            }
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="AdditionalPages" asp-action="Edit" asp-route-pageId="@pageItem.PageId"
+                                                   class="btn btn-outline-info">Edit</a>
+                                            </td>
+
+                                            <td>
+                                                <a asp-area="Admin" asp-controller="AdditionalPages" asp-action="Delete" asp-route-pageId="@pageItem.PageId"
+                                                   class="btn btn-outline-danger">Delete</a>
+                                            </td>
+
+                                        </tr>
+
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        @*Plugins Js For This Page *@
+
+        @section PluginJsForThisPage
+        {
+            <!-- Plugin js for this page -->
+            <script src="~/Admin/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <!-- End plugin js for this page -->
+        }
+
+        @*Custom Js For This Page *@
+
+        @section CustomJsForThisPage
+        {
+            <!-- Custom js for this page -->
+            <script src="~/Admin/assets/js/data-table.js"></script>
+            <!-- End custom js for this page -->
+        }

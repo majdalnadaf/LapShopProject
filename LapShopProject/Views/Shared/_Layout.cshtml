@@ -1,0 +1,282 @@
+﻿
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@using System.Security.Claims
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="multikart">
+    <meta name="keywords" content="multikart">
+    <meta name="author" content="multikart">
+    <link rel="icon" href="~/Frontend/assets/images/favicon/1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Frontend/assets/images/favicon/1.png" type="image/x-icon">
+    <title>@ViewBag.Setting.Title lapShop</title>
+
+    @RenderSection("PluginsCssForThisPage", false)
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/fontawesome.css">
+
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/slick-theme.css">
+
+    <!-- Animate icon -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/animate.css">
+
+    <!-- Themify icon -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/themify-icons.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/bootstrap.css">
+
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="~/Frontend/assets/css/color19.css" media="screen" id="color">
+
+
+</head>
+
+<body>
+
+
+    <!-- header start -->
+    <header class="header-tools marketplace">
+        <div class="mobile-fix-option"></div>
+        <div class="top-header">
+            <div class="container-fluid custom-container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="header-contact">
+                            <ul>
+                                <li>@ViewBag.Setting.HeaderStatement</li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>@ResWebsite.TitCall_Us@ViewBag.Setting.NumberCallUs </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <ul class="header-dropdown">
+                            <li class="mobile-wishlist">
+                                <a href="/UserWishList/WishList"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @ResWebsite.TitMyAccount
+                                <ul class="onhover-show-div">
+                                    
+                                    @if (User.IsInRole("Customer"))
+                                    {
+
+                                        <li><a asp-controller="UserAccount" asp-action="MyAccount" data-lng="es">@ResWebsite.TitMyAccount</a></li>
+                                        <li><a asp-controller="UserAccount" asp-action="Logout" data-lng="es">@ResWebsite.lblLogut</a></li>
+                                    }else
+                                    {
+                                         <li><a asp-controller="UserAccount" asp-action="Login" data-lng="en">@ResWebsite.Titlogin</a></li>                                        
+                                    }
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid custom-container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="main-menu">
+                        <div class="menu-left">
+                            <div class="brand-logo">
+                                <a href="/Home/Index">
+                                    <img src="~/Frontend/assets/images/icon/logo/18.png"
+                                         class="img-fluid blur-up lazyload" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="menu-right pull-right">
+                            <div>
+                                <nav id="main-nav">
+                                    <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                    <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                                        <li>
+                                            <div class="mobile-back text-right">
+                                                Back<i class="fa fa-angle-right pl-2"
+                                                       aria-hidden="true"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="/Home/Index">@ResWebsite.lblHome</a> 
+
+                                        </li>
+                                        <li>
+                                            <a href="/Home/Shop">@ResWebsite.lblShop</a>
+                                        
+                                        </li>
+                                        <li>
+                                            <a href="/Order/Cart">@ResWebsite.TitCart</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/Order/MyOrders">@ResWebsite.lblMy_Orders</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="/UserWishList/WishList">@ResWebsite.TitWishList</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/Info/Contact">@ResWebsite.Titcontact</a>
+                                        </li>
+
+                                        @foreach (var oPage in ViewBag.lstAdditionalPages)
+                                        {
+                                            <li>
+                                                <a asp-controller="Home" asp-action="DisplayAdditionalPage" asp-route-pageId="@oPage.PageId">@oPage.Title</a>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </nav>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+
+    @RenderBody();
+
+    <!-- footer -->
+    <footer class="footer-light">
+       
+        <section class="section-b-space light-layout">
+            <div class="container">
+                <div class="row footer-theme partition-f">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-title footer-mobile-title">
+                            <h4>about</h4>
+                        </div>
+                        <div class="footer-contant">
+                            <div class="footer-logo"><img src="~/Frontend/assets/images/icon/logo/18.png" alt=""></div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, @ViewBag.Setting.Description
+                            </p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="@ViewBag.Setting.FacebookLink"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="@ViewBag.Setting.TwitterLink"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="@ViewBag.Setting.InstgramLink"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="@ViewBag.Setting.YoutubeLink"><i class="bi-youtube" aria-hidden="true">YouTube </i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+     
+                 
+                    <div class="col">
+                        <div class="sub-title">
+                            <div class="footer-title">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="sub-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="footer-end">
+                            <p>
+                                <i class="fa fa-copyright" aria-hidden="true"></i> 2017-18 themeforest powered by
+                                pixelstrap
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+
+
+
+
+
+     @RenderSection("CustomPopupForThisPage", false)
+
+
+    <!-- tap to top -->
+    <div class="tap-top top-cls">
+        <div>
+            <i class="fa fa-angle-double-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+
+    <!-- latest jquery-->
+    <script src="~/Frontend/assets/js/jquery-3.3.1.min.js"></script>
+
+    <!-- popper js-->
+@*     <script src="~/Frontend/assets/js/popper.min.js"></script> *@
+
+    <!-- slick js-->
+    <script src="~/Frontend/assets/js/slick.js"></script>
+
+    <!-- menu js-->
+    <script src="~/Frontend/assets/js/menu.js"></script>
+
+    <!-- lazyload js-->
+    <script src="~/Frontend/assets/js/lazysizes.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/Frontend/assets/js/bootstrap.js"></script>
+
+    <!-- Bootstrap Notification js-->
+    <script src="~/Frontend/assets/js/bootstrap-notify.min.js"></script>
+
+
+
+    <!-- Theme js-->
+    <script src="~/Frontend/assets/js/script.js"></script>
+
+    @RenderSection("PluginsJsForThisPage", false);
+
+
+    @RenderSection("CustomScriptForThisPage", false)
+
+
+    <script>
+        $(window).on('load', function () {
+            setTimeout(function () {
+                $('#exampleModal').modal('show');
+            }, 2500);
+        });
+        function openSearch() {
+            document.getElementById("search-overlay").style.display = "block";
+        }
+
+        function closeSearch() {
+            document.getElementById("search-overlay").style.display = "none";
+        }
+    </script>
+
+
+</body>
+
+
+
+</html>

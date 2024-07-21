@@ -1,0 +1,93 @@
+﻿ 
+@model VwUserRegister
+
+
+@section PluginsCssForThisPage
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evSXhkEG3fnBS4hMqUw6WVTjFuq7ltTOvCWjFVCN6wEjHnJvkzHCenfx9x" crossorigin="anonymous">
+
+}
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+
+            <div class="alert alert-danger list-group" role="alert" asp-validation-summary="ModelOnly">
+            </div>
+
+            <br>
+
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>@ResWebsite.Titcustomer_s_login</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active">@ResWebsite.Titlogin</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="login-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>@ResWebsite.Titlogin</h3>
+                <div class="theme-card">
+                    <form class="theme-form" method="post" enctype="multipart/form-data" asp-controller="UserAccount" asp-action="Login" role="form">
+
+                        <!--hidden input-->
+                        <input asp-for="FirstName" type="hidden" />
+                        <input asp-for="LastName" type="hidden" />
+                        <input asp-for="ReturnUrl" type="hidden" />
+                        <input asp-for="Role" type="hidden" />
+                       
+                        <!--hidden input-->
+
+                        <div class="form-group">
+                            <label for="email">@ResWebsite.TitEmail</label>
+                            <input asp-for="Email" type="email" class="form-control" id="email" placeholder="@ResWebsite.TitEmail" required="">
+                            <span asp-validation-for="Email" class="text-danger" ></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="review">@ResWebsite.TitPass</label>
+                            <input asp-for="Password" type="password" class="form-control" id="review"
+                                   placeholder="@ResWebsite.TitPass" required="">
+                            <span asp-validation-for="Password" class="text-danger" ></span>
+
+                        </div>
+                        <button type="submit" class="btn btn-solid">@ResWebsite.Titlogin</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3>@ResWebsite.TitNew_Customer</h3>
+                <div class="theme-card authentication-right">
+                    <h6 class="title-font">@ResWebsite.TitCreateAccount</h6>
+                    <p>
+                        @ResWebsite.PaFor_register_page
+
+                    </p><a asp-controller="UserAccount" asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl"
+                           class="btn btn-solid">@ResWebsite.TitCreate_an_Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->
+@section CustomScriptForThisPage
+                {
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Validation File Js-->
+}

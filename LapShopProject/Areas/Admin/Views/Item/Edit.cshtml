@@ -1,0 +1,204 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model TbItem
+
+@{
+}
+
+
+@section PluginCssForThisPage
+{
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
+}
+
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> @ResGeneral.lblAdd @ResAdmin.lblNewItem </h3>
+
+            </div>
+
+
+            <form class="forms-sample"  asp-area="Admin" asp-controller="Item" asp-action="Save"
+            enctype="multipart/form-data" method="post" >
+                <div class="row">
+
+
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"> @ResAdmin.lblItemMainInfo</h4>
+
+                                <!--hidden inputs -->
+                                <input type="hidden"  asp-for="ItemId" />
+                                <input type="hidden"  asp-for="CreatedDate" />
+                                <input type="hidden"  asp-for="CreatedBy" />
+                                <!--hidden inputs -->
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">@ResAdmin.lblItemName</label>
+                                    <input asp-for="ItemName" type="text" class="form-control" id="" placeholder="@ResAdmin.lblItemName" required  maxlength="100">
+                                    <span class="text-danger" asp-validation-for="ItemName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">@ResAdmin.lblCategoryName</label>
+                                    <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.lstCategories,"CategoryId" , "CategoryName"))" class="form-select"
+                                            style="  background-color: #222; color: #fff;  border: 1px solid #444; ">
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="CategoryId"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">@ResAdmin.lblItemTypeName</label>
+                                    <select asp-for="ItemTypeId" asp-items="@(new SelectList(ViewBag.lstItemTypes,"ItemTypeId" , "ItemTypeName"))" class="form-select "
+                                            style="  background-color: #222; color: #fff;  border: 1px solid #444; ">
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="ItemTypeId"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">@ResAdmin.lblOperatingSystemName</label>
+                                    <select asp-for="OsId" asp-items="@(new SelectList(ViewBag.lstOs,"OsId" , "OsName"))" class="form-select"
+                                            style="  background-color: #222; color: #fff;  border: 1px solid #444; ">
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="OsId"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for=""  >@ResAdmin.lblSalesPrice</label>
+                                    <input asp-for="SalesPrice" type="text" class="form-control" id="" placeholder="@ResAdmin.lblSalesPrice" required>
+                                    <span class="text-danger" asp-validation-for="SalesPrice"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="">@ResAdmin.lblPurchasePrice</label>
+                                    <input asp-for="PurchasePrice" type="text" class="form-control" id="" placeholder="@ResAdmin.lblPurchasePrice" required>
+                                    <span class="text-danger" asp-validation-for="PurchasePrice"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="">@ResAdmin.lblWeight</label>
+                                    <input asp-for="Weight" type="text" class="form-control" id="" placeholder="@ResAdmin.lblWeight" required>
+                                    <span class="text-danger" asp-validation-for="Weight"></span>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">@ResAdmin.lblImage</label>
+                                    <input onchange="displayImage(this)" id="imageFile" type="file" name="Files" class="form-control" >
+                                </div>
+
+
+
+                            </div> <!-- End card body-->
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">@ResAdmin.lblItemFeatures</h4>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblGpu</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Gpu" type="text" class="form-control" id="" placeholder="@ResAdmin.lblGpu" required>
+                                        <span class="text-danger" asp-validation-for="Gpu"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblProccessor</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Processor" type="text" class="form-control" id="" placeholder="@ResAdmin.lblProccessor" required>
+                                        <span class="text-danger" asp-validation-for="Processor"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblRamSize</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="RamSize" type="number" class="form-control" id="" placeholder="@ResAdmin.lblRamSize" required>
+                                        <span class="text-danger" asp-validation-for="RamSize"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblHardDist</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="HardDisk" type="text" class="form-control" id="" placeholder="@ResAdmin.lblHardDist" required>
+                                        <span class="text-danger" asp-validation-for="HardDisk"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblScreenRes</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="ScreenReslution" type="text" class="form-control" id="" placeholder="@ResAdmin.lblScreenRes" required>
+                                        <span class="text-danger" asp-validation-for="ScreenReslution"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">@ResAdmin.lblScreenSize</label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="ScreenSize" type="text" class="form-control" id="" placeholder="@ResAdmin.lblScreenSize" required>
+                                        <span class="text-danger" asp-validation-for="ScreenSize"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group-row" >
+                                    <img id="outputImage" src="~/Admin/Uploads/Images/@Model.ImageName" alt="Item Image"
+                                         style="max-width: 400px; max-height: 300px;" />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <button type="submit" class="btn btn-gradient-primary me-2">@ResGeneral.lblSave</button>
+                <a  href="/Admin/Item/List" class="btn btn-dark">@ResGeneral.lblCancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section PluginJsForThisPage
+{
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+}
+
+@section CustomJsForThisPage
+{
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/file-upload.js"></script>
+    <script src="~/Admin/assets/js/typeahead.js"></script>
+    <script src="~/Admin/assets/js/select2.js"></script>
+    <!-- End custom js for this page -->
+
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Validation File Js-->
+
+    <script src="~/Admin/assets/js/CustomJs.js"> </script>
+
+}

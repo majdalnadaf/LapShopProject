@@ -1,0 +1,678 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LapShopProject</name>
+    </assembly>
+    <members>
+        <member name="M:LapShopProject.Apis.ItemController.Post(Domains.Models.TbItem)">
+            <summary>
+            Save / Update Item in database
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:LapShopProject.Apis.LoginController.Login(DataAccess.Identity.ApplicationUser)">
+            <summary>
+            Validate user and returns token
+            </summary>
+            <param name="user"></param>
+            
+        </member>
+        <member name="M:LapShopProject.Apis.OrderController.UpdateCart(LapShopProject.Models.ShoppingCart)">
+            <summary>
+            Update Cart Cookie
+            </summary>
+            <param name="cart"></param>
+        </member>
+        <member name="T:LapShopProject.Models.VwCheckout">
+            <summary>
+            For cart and user info
+            </summary>
+        </member>
+        <member name="T:LapShopProject.Resources.ResAdmin">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategories">
+            <summary>
+              Looks up a localized string similar to Categories.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategory">
+            <summary>
+              Looks up a localized string similar to Category.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategoryImage">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategoryInfo">
+            <summary>
+              Looks up a localized string similar to Category Info.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategoryList">
+            <summary>
+              Looks up a localized string similar to Category List.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCategoryName">
+            <summary>
+              Looks up a localized string similar to Category Name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCreatedBy">
+            <summary>
+              Looks up a localized string similar to Created By.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblCreatedDate">
+            <summary>
+              Looks up a localized string similar to Created Date.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblDashboard">
+            <summary>
+              Looks up a localized string similar to Dashboard.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblGpu">
+            <summary>
+              Looks up a localized string similar to Gpu.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblHardDist">
+            <summary>
+              Looks up a localized string similar to Hard Disk.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblImage">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItemFeatures">
+            <summary>
+              Looks up a localized string similar to Laptop Features.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItemMainInfo">
+            <summary>
+              Looks up a localized string similar to Main Info for Item.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItemName">
+            <summary>
+              Looks up a localized string similar to Item Name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItems">
+            <summary>
+              Looks up a localized string similar to Items.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItemsList">
+            <summary>
+              Looks up a localized string similar to Items List.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblItemTypeName">
+            <summary>
+              Looks up a localized string similar to Type.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblNewItem">
+            <summary>
+              Looks up a localized string similar to New Item.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblOperatingSystemName">
+            <summary>
+              Looks up a localized string similar to Operating System.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblProccessor">
+            <summary>
+              Looks up a localized string similar to Proccessor.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblPurchasePrice">
+            <summary>
+              Looks up a localized string similar to Purchase Price.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblRamSize">
+            <summary>
+              Looks up a localized string similar to Ram Size.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblSalesPrice">
+            <summary>
+              Looks up a localized string similar to Sales Price.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblScreenRes">
+            <summary>
+              Looks up a localized string similar to Screeen Resluation.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblScreenSize">
+            <summary>
+              Looks up a localized string similar to Screen Size.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblShowInHomePage">
+            <summary>
+              Looks up a localized string similar to Show In Home Page .
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblState">
+            <summary>
+              Looks up a localized string similar to State.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblUpdatedBy">
+            <summary>
+              Looks up a localized string similar to Updated By.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblUpdatedDate">
+            <summary>
+              Looks up a localized string similar to Updated Date.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResAdmin.lblWeight">
+            <summary>
+              Looks up a localized string similar to Weight.
+            </summary>
+        </member>
+        <member name="T:LapShopProject.Resources.ResGeneral">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblAction">
+            <summary>
+              Looks up a localized string similar to Action.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblAdd">
+            <summary>
+              Looks up a localized string similar to Add.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblCancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblDelete">
+            <summary>
+              Looks up a localized string similar to Delete.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblEdit">
+            <summary>
+              Looks up a localized string similar to Edit.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblNew">
+            <summary>
+              Looks up a localized string similar to New.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResGeneral.lblSave">
+            <summary>
+              Looks up a localized string similar to Save.
+            </summary>
+        </member>
+        <member name="T:LapShopProject.Resources.ResWebsite">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblAddToCart">
+            <summary>
+              Looks up a localized string similar to Add to Cart.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblAddToWishList">
+            <summary>
+              Looks up a localized string similar to Add To WishList.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblback_to_home">
+            <summary>
+              Looks up a localized string similar to back to home.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblBuyNow">
+            <summary>
+              Looks up a localized string similar to Buy Now.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblCheckout">
+            <summary>
+              Looks up a localized string similar to check out.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblCompare">
+            <summary>
+              Looks up a localized string similar to Compare.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblContinueshopping">
+            <summary>
+              Looks up a localized string similar to continue shopping.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblFeaturedProducts">
+            <summary>
+              Looks up a localized string similar to Featured Products.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblHome">
+            <summary>
+              Looks up a localized string similar to Home.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblLarg">
+            <summary>
+              Looks up a localized string similar to L.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblMideum">
+            <summary>
+              Looks up a localized string similar to M.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblNewProducts">
+            <summary>
+              Looks up a localized string similar to New Products.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblOff">
+            <summary>
+              Looks up a localized string similar to Off.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblProduct">
+            <summary>
+              Looks up a localized string similar to Product.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblQuantity">
+            <summary>
+              Looks up a localized string similar to Quantity.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblQuickView">
+            <summary>
+              Looks up a localized string similar to Quick View.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblRating">
+            <summary>
+              Looks up a localized string similar to Rating.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblRECOMMENDATIONSFORYOU">
+            <summary>
+              Looks up a localized string similar to RECOMMENDATIONS FOR YOU.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblShopNow">
+            <summary>
+              Looks up a localized string similar to Shop Now.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblSizeChart">
+            <summary>
+              Looks up a localized string similar to size chart.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblSmal">
+            <summary>
+              Looks up a localized string similar to S.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblSubmitYourReview">
+            <summary>
+              Looks up a localized string similar to Submit Your Review.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.lblXLarg">
+            <summary>
+              Looks up a localized string similar to XL.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.PaFor_register_page">
+            <summary>
+              Looks up a localized string similar to Sign up for a free account at our store. Registration is quick and easy. It allows you to be
+                                   able to order from our shop. To start shopping click register..
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.PaFreeShippingWorldWide">
+            <summary>
+              Looks up a localized string similar to Free shipping world wide.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.PaNewOnlineSpecialFestivalOffer">
+            <summary>
+              Looks up a localized string similar to New online special festival offer.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.PaOnlineServiceForNewCustomer">
+            <summary>
+              Looks up a localized string similar to Online service for new customer.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.stSelectSize">
+            <summary>
+              Looks up a localized string similar to select size.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.Tit24X7service">
+            <summary>
+              Looks up a localized string similar to 24 X 7 service.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitAdd_to_Wishlist">
+            <summary>
+              Looks up a localized string similar to Add to Wishlist.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitAddress">
+            <summary>
+              Looks up a localized string similar to s.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitAddtoCart">
+            <summary>
+              Looks up a localized string similar to Add to cart.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitCart">
+            <summary>
+              Looks up a localized string similar to Cart.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitCheckout">
+            <summary>
+              Looks up a localized string similar to Check out.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitCompare">
+            <summary>
+              Looks up a localized string similar to Compare.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitCreate_an_Account">
+            <summary>
+              Looks up a localized string similar to Create an Account.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitCreateAccount">
+            <summary>
+              Looks up a localized string similar to create account.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.Titcustomer_s_login">
+            <summary>
+              Looks up a localized string similar to customer&apos;s login.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitDays">
+            <summary>
+              Looks up a localized string similar to Days.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitDetails">
+            <summary>
+              Looks up a localized string similar to Details.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitEmail">
+            <summary>
+              Looks up a localized string similar to Email.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitFestivalOffer">
+            <summary>
+              Looks up a localized string similar to Festival offer.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitFirstName">
+            <summary>
+              Looks up a localized string similar to First Name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitFreeShipping">
+            <summary>
+              Looks up a localized string similar to Free Shipping.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitGpu">
+            <summary>
+              Looks up a localized string similar to Gpu.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitHardDisk">
+            <summary>
+              Looks up a localized string similar to Hard Disk.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitHrs">
+            <summary>
+              Looks up a localized string similar to Hrs.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitImage">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitLastName">
+            <summary>
+              Looks up a localized string similar to Last Name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.Titlogin">
+            <summary>
+              Looks up a localized string similar to Login.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitMin">
+            <summary>
+              Looks up a localized string similar to Min.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitName">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitNew_Customer">
+            <summary>
+              Looks up a localized string similar to New Customer.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitNewItem">
+            <summary>
+              Looks up a localized string similar to New Item.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitOs">
+            <summary>
+              Looks up a localized string similar to Operating System.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitPass">
+            <summary>
+              Looks up a localized string similar to Password.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitPhone">
+            <summary>
+              Looks up a localized string similar to Phone.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitPostal_Code">
+            <summary>
+              Looks up a localized string similar to Postal Code.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitPrice">
+            <summary>
+              Looks up a localized string similar to price.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitProccessor">
+            <summary>
+              Looks up a localized string similar to Proccessor.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitProductDetails">
+            <summary>
+              Looks up a localized string similar to Product Details.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitProductname">
+            <summary>
+              Looks up a localized string similar to product name.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitQty">
+            <summary>
+              Looks up a localized string similar to quantity.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitQuickView">
+            <summary>
+              Looks up a localized string similar to Quick View.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitRam">
+            <summary>
+              Looks up a localized string similar to Ram Size.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitRelatedProducts">
+            <summary>
+              Looks up a localized string similar to Related Products.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitReview_Des">
+            <summary>
+              Looks up a localized string similar to Review Description.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitReviewTitle">
+            <summary>
+              Looks up a localized string similar to Review Title.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitScreenReslution">
+            <summary>
+              Looks up a localized string similar to Screen Reslution.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitScreenSize">
+            <summary>
+              Looks up a localized string similar to Screen Size.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitSec">
+            <summary>
+              Looks up a localized string similar to Sec.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitShareIt">
+            <summary>
+              Looks up a localized string similar to Share It.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitState___County">
+            <summary>
+              Looks up a localized string similar to State / County.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitTimeReminder">
+            <summary>
+              Looks up a localized string similar to Time Reminder.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitTotal">
+            <summary>
+              Looks up a localized string similar to total.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitTotalPrice">
+            <summary>
+              Looks up a localized string similar to Total price :.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitTown_City">
+            <summary>
+              Looks up a localized string similar to Town/City.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitVideo">
+            <summary>
+              Looks up a localized string similar to Video.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitWriteReview">
+            <summary>
+              Looks up a localized string similar to Write Review.
+            </summary>
+        </member>
+        <member name="P:LapShopProject.Resources.ResWebsite.TitYou_Are_Not_Authorize">
+            <summary>
+              Looks up a localized string similar to You Are Not Authorize.
+            </summary>
+        </member>
+    </members>
+</doc>

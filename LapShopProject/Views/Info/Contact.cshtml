@@ -1,0 +1,131 @@
+﻿@model TbContactInfo
+
+@{
+}
+@section PluginsCssForThisPage
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1T-yiwgiFKVrcAbBDAg3sC9Pxd9E0pEk"></script>
+
+}
+
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>contact</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active">@ResWebsite.Titcontact</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+
+           
+
+
+
+    <!--section start-->
+    <section class="contact-page section-b-space">
+        <div class="container">
+            <div class="row section-b-space">
+            <div class="col-lg-7" id="map">
+
+                </div>
+
+            <div class="col-lg-5">
+                <div class="contact-right">
+                    <ul>
+                        <li>
+                            <div class="contact-icon">
+                                <img src="~/Frontend/assets/images/icon/phone.png"
+                                     alt="Generic placeholder image">
+                                <h6>@ResWebsite.Titcontact @ResWebsite.ChUs</h6>
+                            </div>
+                            <div class="media-body">
+                                <p> @Model.PhoneNumber1 </p>
+                                <p>@Model.PhoneNumber2 </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <h6>@ResWebsite.TitAddress</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>@Model.Address   </p>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <img src="~/Frontend/assets/images/icon/email.png"
+                                     alt="Generic placeholder image">
+                                <h6>@ResWebsite.TitEmail</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>@Model.SupportEmail1 </p>
+                                <p>@Model.SupportEmail2 </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fa fa-fax" aria-hidden="true"></i>
+                                <h6>@ResWebsite.TitChat @ResWebsite.TitPhone</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>@Model.ChatPhone </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+    @section CustomScriptForThisPage
+                                {
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1T-yiwgiFKVrcAbBDAg3sC9Pxd9E0pEk"></script>
+
+    <script>
+
+        
+
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 37.7749, lng: -122.4194 }, // Example coordinates (San Francisco)
+                zoom: 14
+            });
+
+            // Create a marker for a specific location
+            const myLocationMarker = new google.maps.Marker({
+                position: { lat: 37.7749, lng: -122.4194 }, // Example coordinates (San Francisco)
+                map: map,
+                title: 'My Location'
+            });
+        }
+
+            initMap();
+
+          
+
+        
+    </script>
+
+
+}

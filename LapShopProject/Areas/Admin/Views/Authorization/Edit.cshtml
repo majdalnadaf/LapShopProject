@@ -1,0 +1,348 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@section PluginCssForThisPage
+{
+
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/Admin/assets/vendors/jsgrid/jsgrid-theme.min.css">
+    <!-- End plugin css for this page -->
+
+    <style>
+        .controller-name {
+            font-weight: bold;
+            font-size: 18px; /* for the controller name */
+        }
+
+        .action-name {
+            margin-left: 10px;
+            font-size: 16px; /*  for action names */
+        }
+    </style>
+
+
+}
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Authorization Table </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Authorization</li>
+                    </ol>
+                </nav>
+            </div>
+
+
+
+            <div class="row grid-margin">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Authorization Table</h4>
+                            <p class="card-description">Controllers , Actions , Roles</p>
+                            <br>
+                            <h5>Select Admin or Webiste</h5>
+                            <select class="form-select" style="  background-color: #404; color: #fff;  border: 1px solid #444; "
+                            onchange="DeterminRoleAction(this)">
+
+                                <option value="0">Admin</option>
+                                <option value="1">Website</option>
+
+                            </select>
+
+                            <br>
+                            <h5>Select Role</h5>
+
+                            <select class="form-select" asp-items="@(new SelectList(ViewBag.RoleList,"Id","Name"))"
+                                    style="  background-color: #090; color: #fff;  border: 1px solid #444; " onchange="GetRoleAction(this)">
+                                <!-- Add more options as needed -->
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row grid-margin">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="js-grid-static"></div>
+                            <div>
+                                <button onclick="UpdateRoleAction()" class="btn btn-primary">@ResGeneral.lblSave</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- content-wrapper ends -->
+        @section PluginJsForThisPage
+        {
+            <!-- Plugin js for this page -->
+            <script src="~/Admin/assets/vendors/jsgrid/jsgrid.min.js"></script>
+            <!-- End plugin js for this page -->
+        }
+
+
+
+        @section CustomJsForThisPage {
+            <!-- Custom js for this page -->
+            <!-- End custom js for this page -->
+
+            <script>
+
+                let roleId;
+                let roleFor = false;
+
+
+                function DeterminRoleAction(selectEle)
+                {
+                   var selectVal = $(selectEle).val();
+                    if (selectVal == '0') {
+                        roleFor = false;
+                    } else if(selectVal == '1')
+                    {
+                        roleFor = true;
+                    }
+                }
+
+                // function for get role action by  role id
+                function GetRoleAction(selectEle) {
+
+                    roleId = $(selectEle).val();
+
+                    console.log(roleId);
+
+                    // ajax request for get the RoleAction
+
+                    var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+                    var settings = {
+                        "url": apiBaseUrl + "/api/Role/" + roleId + "/" + roleFor,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+
+                        console.log("the response");
+                        console.log(response);
+             
+                        // start call js-grid
+                        const jsonCustomData = convertFormat(JSON.parse(response));
+                        
+                        
+                        // Convert to the customData format
+                        const customData = Object.keys(jsonCustomData).map((controller) => ({
+                            controller,
+                            actions: jsonCustomData[controller]
+                        }));
+
+                        // console.log(customData); // Check the result in the console
+
+
+                        var myObject = {};
+
+                        // Create the dynamic object
+                        customData.forEach(item => {
+                            myObject[item.controller] = item.actions;
+                        });
+
+
+                        if ($("#js-grid-static").length) {
+                            $("#js-grid-static").jsGrid({
+                                height: "500px",
+                                width: "100%",
+
+                                sorting: true,
+                                paging: true,
+
+                                data: customData,
+
+                                fields: [
+                                    {
+                                        name: "Controller",
+                                        type: "text",
+                                        width: 150,
+                                        itemTemplate: function (value, item) {
+                                            return `<span class="controller-name">${item.controller}</span>`; // Display the controller name
+                                        }
+                                    },
+                                    {
+                                        name: "Actions",
+                                        itemTemplate: function (value, item) {
+                                            // Create a list of actions
+                                            const actionsList = Object.entries(myObject[item.controller])
+                                                .map(([action, isChecked]) => {
+                                                    return `<div id = "action-div">
+                                                                                                                                                     <input type="checkbox" ${isChecked ? 'checked' : ''}>
+                                                                                                                                                     <span class="action-name">${action}</span>
+                                                                                                                                                      </div>
+                                                                                                                                                      <br>`;
+                                                })
+                                                .join("");
+
+                                            return `<div>${actionsList}</div>`;
+                                        }
+                                    }
+                                ]
+
+
+
+
+                            });
+                        };
+
+                        //end call js-grid
+
+                    });
+
+
+                };
+
+                //Update role action in database
+                function UpdateRoleAction() {
+
+
+                   
+
+                    // Get the table element
+                    // Get all tables with class "jsgrid-table"
+                    const tables = document.querySelectorAll('.jsgrid-table');
+
+                    // Access the second table (index 1)
+                    const secondTable = tables[1];
+
+                    // Access all <tr> elements
+                    const rows = secondTable.rows;
+
+
+                    let RoleActions = [];
+
+                    // Iterate through the rows
+                    for (let i = 0; i < rows.length; i++) {
+                        const row = rows[i];
+
+
+                        const controllerNameSpan = row.querySelector('.controller-name');
+                        const controllerName = controllerNameSpan.textContent;
+
+
+                        const divElements = row.querySelectorAll('div[id="action-div"]');
+
+
+                        // the actions of the controller
+                        let myActions = [];
+
+
+                        // Iterate through the <div> elements
+                        divElements.forEach((div, index) => {
+                            // Access the checkbox and span within each <div>
+                            const checkbox = div.querySelector('input[type="checkbox"]');
+                            const actionNameSpan = div.querySelector('.action-name');
+
+                            // Extract relevant information
+                            const isChecked = checkbox.checked;
+                            const action = actionNameSpan.textContent;
+
+                            // store the action name with checked value  in array
+
+
+
+                            let actionChecked = {
+                                [action]: isChecked
+                            };
+
+                            myActions.push(actionChecked);
+
+                        });
+
+
+                        let controlerWithActions = {
+                            [controllerName]: myActions
+
+                        };
+
+
+                        RoleActions.push(controlerWithActions);
+
+
+                    }
+
+                    let jsonRoleActions = JSON.stringify(RoleActions);
+                    console.log(jsonRoleActions);
+
+                    let role = {
+                        "RoleAction": jsonRoleActions,
+                        "RoleId": roleId,
+                        "IsAdmin": roleFor
+                    }
+
+                    console.log(role);
+
+                    // Update the Role action with ajax request
+                    var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+                    var settings = {
+                        "url": apiBaseUrl + "/api/Role",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": JSON.stringify(role),
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+
+
+
+                }
+
+                function convertFormat(inputArray) {
+
+                    const outputObject = {};
+
+                    Array.from(inputArray).forEach((item) => {
+                        const category = Object.keys(item)[0];
+                        const subItems = item[category];
+
+                        outputObject[category] = {};
+
+                        const subItemsArray = Array.from(subItems);
+
+                        subItemsArray.forEach((subItem) => {
+                            const key = Object.keys(subItem)[0];
+                            const value = subItem[key];
+                            outputObject[category][key] = value;
+                        });
+                    });
+
+                    console.log(outputObject);
+                    return outputObject;
+                }
+
+
+            </script>
+
+        }
+
+
+
+
+

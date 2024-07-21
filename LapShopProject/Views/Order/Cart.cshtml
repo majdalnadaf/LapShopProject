@@ -1,0 +1,277 @@
+﻿@model ShoppingCart
+
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>cart</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active">@ResWebsite.TitCart</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="cart-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">@ResWebsite.TitImage</th>
+                            <th scope="col">@ResWebsite.TitProductname</th>
+                            <th scope="col">@ResWebsite.TitPrice</th>
+                            <th scope="col">@ResWebsite.TitQty</th>
+                            <th scope="col">@ResGeneral.lblAction</th>
+                            <th scope="col">@ResWebsite.TitTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!--hidden input-->
+                        <input id="promoCode" type="hidden" value="@Model.PromoCode" />
+                        <!--hidden input-->
+                        @for (int i = 0; i < Model.lstItem.Count; i++)
+                        {
+                            <tr class="TrItem" data-id="@Model.lstItem[i].ItemId"
+                                data-image="@Model.lstItem[i].ImageName"
+                                data-name="@Model.lstItem[i].ItemName"
+                                data-pricetr="@Model.lstItem[i].Price">
+
+                                <td>
+                                    <a href="#"><img src="~/Admin/Uploads/Images/Items/@Model.lstItem[i].ImageName" alt=""></a>
+                                </td>
+                                <td>
+                                    <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="@Model.lstItem[i].ItemId">@Model.lstItem[i].ItemName</a>
+                                    <div class="mobile-cart-content row">
+                                        <div class="col-xs-3">
+                                            <div class="qty-box">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-number"
+                                                           data-id="@Model.lstItem[i].ItemId" data-price="@Model.lstItem[i].Price" min="1"
+                                                           value="@Model.lstItem[i].Qty" onchange="CheckQty(this)">
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color">@Model.lstItem[i].Price</h2>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color">
+                                                <a href="#" class="icon"><i class="ti-close"></i></a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2>@Model.lstItem[i].Price</h2>
+                                </td>
+                                <td>
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <input id="InputId" type="number" class="form-control input-number"
+                                                   data-id="@Model.lstItem[i].ItemId" data-price="@Model.lstItem[i].Price" min="1"
+                                                   value="@Model.lstItem[i].Qty" onchange="CheckQty(this)">
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onclick="DeleteItem(this)" class="btn btn-danger">@ResGeneral.lblDelete</button>
+                                </td>
+                                <td>
+                                    <h2 data-id="@Model.lstItem[i].ItemId" class="td-color totalPrice">@Model.lstItem[i].TotalPrice</h2>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+                <table class="table cart-table table-responsive-md">
+                    <tfoot>
+                        <tr>
+                            <td>@ResWebsite.TitTotalPrice</td>
+                            <td>
+                                <h2 class="TotalPriceOfAllItems">@Model.TotalPriceOfAllItems</h2>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+@*         <div>
+            <div class="col-6"><a onclick="UpdateCartCookie()" class="btn btn-solid">@ResGeneral.lblSave</a></div>
+        </div> *@
+        <div class="row cart-buttons">
+            <div class="col-6"><a onclick="UpdateCartCookie()" href="/Home/Index" class="btn btn-solid">@ResWebsite.lblContinueshopping</a></div>
+            <div class="col-6"><a onmousemove="UpdateCartCookie()" href="/Order/CheckOut" class="btn btn-solid">@ResWebsite.lblCheckout</a></div>
+        </div>
+    </div>
+</section>
+<!--section end-->
+@section CustomScriptForThisPage
+{
+
+@* 
+    <!-- Validation File Js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Validation File Js--> *@
+    <script>
+
+
+        function DeleteItem(btn) {
+
+            const row = btn.parentElement.parentElement;
+
+            // Get the totalPrice element using its class name
+            const totalPriceElement = row.querySelector('.totalPrice');
+
+            // Access the total price value (assuming it's stored as text content)
+            const totalPrice = parseFloat(totalPriceElement.textContent);
+            // Get the TotalPriceOfAllItems element using its class name
+            const TotalPriceOfAllItemsEle = $(".TotalPriceOfAllItems");
+            //update the TotalPriceOfAllItems
+            const newTotalPriceOfAllItems = parseFloat(TotalPriceOfAllItemsEle.html()) - totalPrice;
+            TotalPriceOfAllItemsEle.html(newTotalPriceOfAllItems);
+            //Remove row
+            btn.closest("tr").remove();
+        }
+
+
+        function CheckQty(input) {
+
+
+
+            let id = $(input).data("id");
+            let price = parseFloat($(input).data("price"));
+            let qty = parseFloat($(input).val());
+            let TotalPriceForAllItems = 0;
+
+
+
+            $(".totalPrice").each(function (i) {
+
+                if ($(this).data("id") === id) {
+                    $(this).html(price * qty);
+
+
+
+                }
+
+                TotalPriceForAllItems = TotalPriceForAllItems + parseFloat($(this).html());
+
+            });
+
+
+            $(".TotalPriceOfAllItems").html(TotalPriceForAllItems);
+
+
+        }
+
+        function UpdateCartCookie() {
+
+            let totalPriceForAllItems = $(".TotalPriceOfAllItems").html();
+
+            let olstItem = [];
+
+
+
+            $(".TrItem").each(function (i) {
+
+
+                let oItemId = $(this).data("id");
+                let oItemName = $(this).data("name");
+                let oImageName = $(this).data("image");
+                let oPrice = $(this).data("pricetr");
+                let oQty = $(this).find("#InputId").val();
+                let oTotalPrice;
+
+                $(".totalPrice").each(function (i) {
+
+
+
+                    if ($(this).data("id") === oItemId) {
+
+
+                        oTotalPrice = $(this).html();
+
+                    }
+
+                });
+
+
+                let item =
+                {
+                    ItemId: oItemId,
+                    ItemName: oItemName,
+                    ImageName: oImageName,
+                    Price: oPrice,
+                    Qty: parseFloat(oQty),
+                    TotalPrice: oTotalPrice
+                }
+
+                olstItem.push(item);
+
+            });
+
+
+
+
+            let Cart =
+            {
+                lstItem: olstItem,
+                PromoCode: $("#promoCode").val(),
+                TotalPriceOfAllItems: totalPriceForAllItems
+            }
+
+
+            var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+
+
+            $.ajax({
+                url: apiBaseUrl + '/api/Order/UpdateCart',  //  API endpoint
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(Cart),
+                success: function (response) {
+                    if (response.success) {
+
+                    } else {
+                        // Handle errors (e.g., display error message)
+                    }
+
+                   
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error updating product:", textStatus, errorThrown);
+                }
+            });
+
+         
+
+        }
+
+    </script>
+
+
+
+}
+

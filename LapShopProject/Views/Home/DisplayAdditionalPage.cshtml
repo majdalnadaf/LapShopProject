@@ -1,0 +1,26 @@
+﻿@model TbPage
+
+
+
+
+@section PluginsCssForThisPage
+{
+
+    @Html.Raw(Model.CssContent)
+
+}
+
+
+
+
+@Html.Raw(Model.HtmlContent)
+
+
+
+
+
+@section CustomScriptForThisPage {
+
+
+    @Html.Raw(Model.JsContent);
+}

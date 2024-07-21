@@ -1,0 +1,116 @@
+﻿@model List<TbItem>
+
+@{
+}
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>@ResWebsite.TitWishList</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">@ResWebsite.lblHome</a></li>
+                        <li class="breadcrumb-item active">@ResWebsite.TitWishList</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="wishlist-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">@ResWebsite.TitImage</th>
+                            <th scope="col">@ResWebsite.TitProductname</th>
+                            <th scope="col">@ResWebsite.TitPrice</th>
+                            <th scope="col">@ResGeneral.lblAction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr id="tr-@Model[i].ItemId">
+                                <td>
+                                    <a href="/ItemDetails/Details?itemId = @Model[i].ItemId"><img src="~/Admin/Uploads/Images/Items/@Model[i].ImageName" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="/ItemDetails/Details?itemId = @Model[i].ItemId">@Model[i].ItemName</a>
+                                    <div class="mobile-cart-content row">
+
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color">@ResWebsite.DollarSign @Model[i].SalesPrice</h2>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color">
+                                                <a onclick="DeleteItemWishList(@Model[i].ItemId)" class="icon mr-3"><i class="btn btn-danger"> @ResGeneral.lblDelete </i> </a>
+                                                <a asp-controller="Order" asp-action="AddToCart" asp-route-itemId="@Model[i].ItemId" class="cart"><i class="ti-shopping-cart"></i></a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2>@ResWebsite.DollarSign @Model[i].SalesPrice</h2>
+                                </td>
+
+                                <td>
+                                    <a onclick="DeleteItemWishList(@Model[i].ItemId)" class="icon mr-3"><i class="btn btn-danger"> @ResGeneral.lblDelete </i> </a>
+                                    <a asp-controller="Order" asp-action="AddToCart" asp-route-itemId="@Model[i].ItemId" class="cart"><i class="ti-shopping-cart"></i></a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row wishlist-buttons">
+            <div class="col-12">
+                <a href="/Home/Index" class="btn btn-solid"> @ResWebsite.lblContinueshopping </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--section end-->
+@section CustomScriptForThisPage
+{
+    <script>
+
+        function DeleteItemWishList(itemId) {
+
+            var apiBaseUrl = '@_configuration["ApiSettings:BaseUrl"]';
+
+            var settings = {
+                "url": apiBaseUrl + "/api/UserWishList",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "ItemId": itemId
+                }),
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+        }
+
+    </script>
+
+}

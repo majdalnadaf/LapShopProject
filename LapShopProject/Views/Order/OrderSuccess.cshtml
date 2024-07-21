@@ -1,0 +1,124 @@
+﻿@model VwOrderSuccess
+
+@{
+}
+
+
+<!-- thank-you section start -->
+<section class="section-b-space light-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>@ResWebsite.POrderSuccess</p>
+                    <p>@ResWebsite.TitTransaction_ID: @Model.CashTransaction.CashTransactionId</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
+
+
+
+
+
+
+
+<!-- order-detail section start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>@ResWebsite.Tityour_order_details</h3>
+                    
+                    @for (int i = 0; i < Model.lstSalesInoivceItems.Count; i++)
+                    {
+                        var item = Model.lstSalesInoivceItems[i];
+
+                        <div class="row product-order-detail">
+                            <div class="col-3">
+                                <img src="~/Admin/Uploads/Images/Items/@item.Item.ImageName" alt=""
+                                     class="img-fluid blur-up lazyload">
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>@ResWebsite.TitProductname</h4>
+                                    <h5>@item.Item.ItemName</h5>
+                                </div>
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>@ResWebsite.lblQuantity</h4>
+                                    <h5>@item.Qty</h5>
+                                </div>
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>@ResWebsite.TitPrice</h4>
+                                    <h5>@ResWebsite.DollarSign@item.InvoicePrice</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    }
+
+                    <div class="total-sec">
+                        <ul>
+                            <li>@ResWebsite.Titsubtotal <span>@ResWebsite.DollarSign@Model.SubTotalPrice</span></li>
+                            <li>shipping <span>@ResWebsite.DollarSign@Model.ShippingCost</span></li>
+                        </ul>
+                    </div>
+                    <div class="final-total">
+                        <h3>@ResWebsite.TitTotal <span>@ResWebsite.DollarSign@Model.TotalPrice</span></h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-sm-6">
+                        <h4>@ResWebsite.Titsummery</h4>
+                        <ul class="order-detail">
+                            <li>@ResWebsite.Titorder_ID: @Model.SalesInvoice.InvoiceId</li>
+                            <li>@ResWebsite.TitOrder_Date: @Model.SalesInvoice.CreatedDate</li>
+                            <li>@ResWebsite.TitOrder_Total: @ResWebsite.DollarSign @Model.TotalPrice</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>@ResWebsite.Titshipping_address</h4>
+                        <ul class="order-detail">
+                            <li>@Model.DeliveryInfo.TbCountry.CountryName</li>
+                            <li>@Model.DeliveryInfo.City</li>
+                            <li>@Model.DeliveryInfo.StreetName</li>
+                            <li>@ResWebsite.TitContact_No : @Model.User.PhoneNumber</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 payment-mode">
+                        <h4>@ResWebsite.Titpayment_method</h4>
+                        <p>
+                            Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking
+                            acceptance subject to device availability.
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="delivery-sec">
+                            <h3>@ResWebsite.Titexpected_date_of_delivery</h3>
+                            <h2>@Model.SalesInvoice.CreatedDate</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->

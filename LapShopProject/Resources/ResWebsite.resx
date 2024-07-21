@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChUs" xml:space="preserve">
+    <value>us</value>
+  </data>
+  <data name="DollarSign" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="lblAddToCart" xml:space="preserve">
+    <value>Add to Cart</value>
+  </data>
+  <data name="lblAddToWishList" xml:space="preserve">
+    <value>Add To WishList</value>
+  </data>
+  <data name="lblback to home" xml:space="preserve">
+    <value>back to home</value>
+  </data>
+  <data name="lblBuyNow" xml:space="preserve">
+    <value>Buy Now</value>
+  </data>
+  <data name="lblCheckout" xml:space="preserve">
+    <value>check out</value>
+  </data>
+  <data name="lblCompare" xml:space="preserve">
+    <value>Compare</value>
+  </data>
+  <data name="lblContinueshopping" xml:space="preserve">
+    <value>continue shopping</value>
+  </data>
+  <data name="lblFeaturedProducts" xml:space="preserve">
+    <value>Featured Products</value>
+  </data>
+  <data name="lblHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="lblLarg" xml:space="preserve">
+    <value>L</value>
+  </data>
+  <data name="lblLogut" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="lblMideum" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="lblMy Orders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
+  <data name="lblNewProducts" xml:space="preserve">
+    <value>New Products</value>
+  </data>
+  <data name="lblOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="lblProduct" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="lblQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="lblQuickView" xml:space="preserve">
+    <value>Quick View</value>
+  </data>
+  <data name="lblRating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="lblRECOMMENDATIONSFORYOU" xml:space="preserve">
+    <value>RECOMMENDATIONS FOR YOU</value>
+  </data>
+  <data name="lblSave setting" xml:space="preserve">
+    <value>Save setting</value>
+  </data>
+  <data name="lblShop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="lblShopNow" xml:space="preserve">
+    <value>Shop Now</value>
+  </data>
+  <data name="lblSizeChart" xml:space="preserve">
+    <value>size chart</value>
+  </data>
+  <data name="lblSmal" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="lblSubmitYourReview" xml:space="preserve">
+    <value>Submit Your Review</value>
+  </data>
+  <data name="lblSupport" xml:space="preserve">
+    <value>Support :</value>
+  </data>
+  <data name="lblXLarg" xml:space="preserve">
+    <value>XL</value>
+  </data>
+  <data name="PaFor register page" xml:space="preserve">
+    <value>Sign up for a free account at our store. Registration is quick and easy. It allows you to be
+                        able to order from our shop. To start shopping click register.</value>
+  </data>
+  <data name="PaFreeShippingWorldWide" xml:space="preserve">
+    <value>Free shipping world wide</value>
+  </data>
+  <data name="PaNewOnlineSpecialFestivalOffer" xml:space="preserve">
+    <value>New online special festival offer</value>
+  </data>
+  <data name="PaOnlineServiceForNewCustomer" xml:space="preserve">
+    <value>Online service for new customer</value>
+  </data>
+  <data name="POrderSuccess" xml:space="preserve">
+    <value>Payment is successfully processsed and your order is on the way</value>
+  </data>
+  <data name="stSelectSize" xml:space="preserve">
+    <value>select size</value>
+  </data>
+  <data name="Tit24X7service" xml:space="preserve">
+    <value>24 X 7 service</value>
+  </data>
+  <data name="TitAdd to Wishlist" xml:space="preserve">
+    <value>Add to Wishlist</value>
+  </data>
+  <data name="TitAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="TitAddtoCart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
+  <data name="TitCall Us" xml:space="preserve">
+    <value>Call Us :</value>
+  </data>
+  <data name="TitCart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
+  <data name="TitChat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="TitCheckout" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="TitCompare" xml:space="preserve">
+    <value>Compare</value>
+  </data>
+  <data name="Titcontact" xml:space="preserve">
+    <value>contact</value>
+  </data>
+  <data name="TitContact No" xml:space="preserve">
+    <value>Contact No</value>
+  </data>
+  <data name="TitCreate an Account" xml:space="preserve">
+    <value>Create an Account</value>
+  </data>
+  <data name="TitCreateAccount" xml:space="preserve">
+    <value>create account</value>
+  </data>
+  <data name="Titcustomer's login" xml:space="preserve">
+    <value>customer's login</value>
+  </data>
+  <data name="TitDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="TitDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="TitDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="TitEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Titexpected date of delivery" xml:space="preserve">
+    <value>expected date of delivery</value>
+  </data>
+  <data name="TitFestivalOffer" xml:space="preserve">
+    <value>Festival offer</value>
+  </data>
+  <data name="TitFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TitFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="TitFreeShipping" xml:space="preserve">
+    <value>Free Shipping</value>
+  </data>
+  <data name="TitGpu" xml:space="preserve">
+    <value>Gpu</value>
+  </data>
+  <data name="TitHardDisk" xml:space="preserve">
+    <value>Hard Disk</value>
+  </data>
+  <data name="TitHrs" xml:space="preserve">
+    <value>Hrs</value>
+  </data>
+  <data name="TitImage" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="TitLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Titlogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="TitMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="TitMyAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="TitName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TitNew Customer" xml:space="preserve">
+    <value>New Customer</value>
+  </data>
+  <data name="TitNewItem" xml:space="preserve">
+    <value>New Item</value>
+  </data>
+  <data name="TitOrder Date" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="Titorder ID" xml:space="preserve">
+    <value>order ID</value>
+  </data>
+  <data name="TitOrder Total" xml:space="preserve">
+    <value>Order Total</value>
+  </data>
+  <data name="TitOs" xml:space="preserve">
+    <value>Operating System</value>
+  </data>
+  <data name="TitPages" xml:space="preserve">
+    <value>Additional Pages</value>
+  </data>
+  <data name="TitPass" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Titpayment method" xml:space="preserve">
+    <value>payment method</value>
+  </data>
+  <data name="TitPERSONAL DETAIL" xml:space="preserve">
+    <value>PERSONAL DETAIL</value>
+  </data>
+  <data name="TitPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="TitPostal Code" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="TitPrice" xml:space="preserve">
+    <value>price</value>
+  </data>
+  <data name="TitProccessor" xml:space="preserve">
+    <value>Proccessor</value>
+  </data>
+  <data name="TitProductDetails" xml:space="preserve">
+    <value>Product Details</value>
+  </data>
+  <data name="TitProductname" xml:space="preserve">
+    <value>product name</value>
+  </data>
+  <data name="TitProducts" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="TitProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="TitQty" xml:space="preserve">
+    <value>quantity</value>
+  </data>
+  <data name="TitQuickView" xml:space="preserve">
+    <value>Quick View</value>
+  </data>
+  <data name="TitRam" xml:space="preserve">
+    <value>Ram Size</value>
+  </data>
+  <data name="TitRelatedProducts" xml:space="preserve">
+    <value>Related Products</value>
+  </data>
+  <data name="TitReview Des" xml:space="preserve">
+    <value>Review Description</value>
+  </data>
+  <data name="TitReviewTitle" xml:space="preserve">
+    <value>Review Title</value>
+  </data>
+  <data name="TitScreenReslution" xml:space="preserve">
+    <value>Screen Reslution</value>
+  </data>
+  <data name="TitScreenSize" xml:space="preserve">
+    <value>Screen Size</value>
+  </data>
+  <data name="TitSec" xml:space="preserve">
+    <value>Sec</value>
+  </data>
+  <data name="TitShareIt" xml:space="preserve">
+    <value>Share It</value>
+  </data>
+  <data name="Titshipping address" xml:space="preserve">
+    <value>shipping address</value>
+  </data>
+  <data name="TitState / County" xml:space="preserve">
+    <value>State / County</value>
+  </data>
+  <data name="TitStoreInfo" xml:space="preserve">
+    <value>Store Information</value>
+  </data>
+  <data name="TitStreetName" xml:space="preserve">
+    <value>Street Name</value>
+  </data>
+  <data name="Titsubtotal" xml:space="preserve">
+    <value>subtotal</value>
+  </data>
+  <data name="Titsummery" xml:space="preserve">
+    <value>summery</value>
+  </data>
+  <data name="TitTimeReminder" xml:space="preserve">
+    <value>Time Reminder</value>
+  </data>
+  <data name="TitTotal" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="TitTotalPrice" xml:space="preserve">
+    <value>Total price :</value>
+  </data>
+  <data name="TitTown/City" xml:space="preserve">
+    <value>Town/City</value>
+  </data>
+  <data name="TitTransaction ID" xml:space="preserve">
+    <value>Transaction ID</value>
+  </data>
+  <data name="TitVideo" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="TitWishList" xml:space="preserve">
+    <value>WishList</value>
+  </data>
+  <data name="TitWriteReview" xml:space="preserve">
+    <value>Write Review</value>
+  </data>
+  <data name="TitYou Are Not Authorize" xml:space="preserve">
+    <value>You Are Not Authorize</value>
+  </data>
+  <data name="Tityour order details" xml:space="preserve">
+    <value>your order details</value>
+  </data>
+</root>

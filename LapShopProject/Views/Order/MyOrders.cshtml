@@ -1,0 +1,76 @@
+﻿
+@model List<VwMyOrder>
+
+@{
+}
+
+@section PluginsCssForThisPage
+{
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+}
+
+<div class="container">
+
+    @foreach(var order in Model)
+    {
+        <article class="card">
+            <header class="card-header"> @ResWebsite.lblMy_Orders  </header>
+            <div class="card-body">
+                <h6>@order.OrderId</h6>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <strong>@ResWebsite.TitOrder_Date</strong> <br> @order.OrderDate </div>
+                        <div class="col"> <strong>@ResWebsite.TitState___County</strong> <br> @order.CountryName </div>
+                        <div class="col"> <strong>@ResWebsite.TitTown_City</strong> <br> @order.City </div>
+                        <div class="col"> <strong>@ResWebsite.TitStreetName</strong> <br> @order.StreetName </div>
+                    </div>
+                </article>
+
+
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">@ResWebsite.TitImage</th>
+                            <th scope="col">@ResWebsite.TitProductname</th>
+                            <th scope="col">@ResWebsite.TitPrice</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in order.lstItems)
+                        {
+                            <tr >
+                                <td>
+                                    <a><img src="~/Admin/Uploads/Images/Items/@item.ImageName" alt=""></a>
+                                </td>
+                                <td>
+                                    <a>@item.ItemName</a>
+                                </td>
+                                <td>
+                                    <h2>@ResWebsite.DollarSign @item.SalesPrice</h2>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </article>
+        <br>
+    } 
+
+
+</div>
+
+
+@section CustomScriptForThisPage
+{
+
+}
