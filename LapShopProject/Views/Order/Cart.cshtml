@@ -51,7 +51,7 @@
                                 data-pricetr="@Model.lstItem[i].Price">
 
                                 <td>
-                                    <a href="#"><img src="~/Admin/Uploads/Images/Items/@Model.lstItem[i].ImageName" alt=""></a>
+                                    <a href="#"><img loading="lazy" src="~/Admin/Uploads/Images/Items/@Model.lstItem[i].ImageName" alt=""></a>
                                 </td>
                                 <td>
                                     <a asp-controller="ItemDetails" asp-action="Details" asp-route-itemId="@Model.lstItem[i].ItemId">@Model.lstItem[i].ItemName</a>

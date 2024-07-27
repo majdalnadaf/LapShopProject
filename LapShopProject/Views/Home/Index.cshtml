@@ -129,7 +129,7 @@
                             {
                                 <div class="media">
                                     <a href="product-page(no-sidebar).html">
-                                        <img class="media-body align-self-center"
+                                        <img class="media-body align-self-center" loading="lazy"
                                              src="~/Admin/Uploads/Images/Items/@item.ImageName" alt="">
                                     </a>
                                     <div class="media-body align-self-center">
@@ -225,7 +225,7 @@
                             AdvertisementSlider = new TbSlider();
                     }
 
-                    <img src="~/Admin/Uploads/Images/Sliders/@AdvertisementSlider.ImageName" alt="" class="img-fluid">
+                    <img loading="lazy" src="~/Admin/Uploads/Images/Sliders/@AdvertisementSlider.ImageName" alt="" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -333,10 +333,10 @@
 @section CustomScriptForThisPage
 {
     <!-- fly cart ui jquery-->
-    <script src="~/Frontend/assets/js/jquery-ui.min.js"></script>
+    <script async src="~/Frontend/assets/js/jquery-ui.min.js"></script>
     <!-- exitintent jquery-->
-    <script src="~/Frontend/assets/js/jquery.exitintent.js"></script>
-    <script src="~/Frontend/assets/js/exit.js"></script>
+    <script async src="~/Frontend/assets/js/jquery.exitintent.js"></script>
+    <script async src="~/Frontend/assets/js/exit.js"></script>
     <!-- Fly cart js-->
-    <script src="~/Frontend/assets/js/fly-cart.js"></script>
+    <script async src="~/Frontend/assets/js/fly-cart.js"></script>
 }
